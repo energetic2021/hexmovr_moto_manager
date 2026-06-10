@@ -1,0 +1,4 @@
+source;share/hexmovr_moto_panel/local_setup.bash
+source;share/hexmovr_moto_panel/local_setup.dsv
+source;share/hexmovr_moto_panel/local_setup.sh
+source;share/hexmovr_moto_panel/local_setup.zsh

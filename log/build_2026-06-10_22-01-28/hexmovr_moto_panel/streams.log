@@ -1,0 +1,36 @@
+[0.176s] Invoking command in '/home/hexmovr02/hexmovr_manager/build/hexmovr_moto_panel': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/hexmovr02/hexmovr_manager/install/my_python_pkg:/home/hexmovr02/rebotarm_ros2/install/rebotarm_moveit_demos:/home/hexmovr02/rebotarm_ros2/install/rebotarm_bringup:/home/hexmovr02/rebotarm_ros2/install/rebotarmcontroller:/home/hexmovr02/reBotArmController_ROS2/install/rebotarm_bringup:/home/hexmovr02/reBotArmController_ROS2/install/rebotarmcontroller:/opt/ros/humble /usr/bin/cmake --build /home/hexmovr02/hexmovr_manager/build/hexmovr_moto_panel -- -j32 -l32
+[0.215s] Consolidate compiler generated dependencies of target hexmovr_moto_panel
+[0.231s] [100%] Built target hexmovr_moto_panel
+[0.406s] Invoked command in '/home/hexmovr02/hexmovr_manager/build/hexmovr_moto_panel' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/hexmovr02/hexmovr_manager/install/my_python_pkg:/home/hexmovr02/rebotarm_ros2/install/rebotarm_moveit_demos:/home/hexmovr02/rebotarm_ros2/install/rebotarm_bringup:/home/hexmovr02/rebotarm_ros2/install/rebotarmcontroller:/home/hexmovr02/reBotArmController_ROS2/install/rebotarm_bringup:/home/hexmovr02/reBotArmController_ROS2/install/rebotarmcontroller:/opt/ros/humble /usr/bin/cmake --build /home/hexmovr02/hexmovr_manager/build/hexmovr_moto_panel -- -j32 -l32
+[0.414s] Invoking command in '/home/hexmovr02/hexmovr_manager/build/hexmovr_moto_panel': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/hexmovr02/hexmovr_manager/install/my_python_pkg:/home/hexmovr02/rebotarm_ros2/install/rebotarm_moveit_demos:/home/hexmovr02/rebotarm_ros2/install/rebotarm_bringup:/home/hexmovr02/rebotarm_ros2/install/rebotarmcontroller:/home/hexmovr02/reBotArmController_ROS2/install/rebotarm_bringup:/home/hexmovr02/reBotArmController_ROS2/install/rebotarmcontroller:/opt/ros/humble /usr/bin/cmake --install /home/hexmovr02/hexmovr_manager/build/hexmovr_moto_panel
+[0.422s] -- Install configuration: ""
+[0.422s] -- Up-to-date: /home/hexmovr02/hexmovr_manager/install/hexmovr_moto_panel/share/hexmovr_moto_panel/plugin_description.xml
+[0.422s] -- Up-to-date: /home/hexmovr02/hexmovr_manager/install/hexmovr_moto_panel/lib/libhexmovr_moto_panel.so
+[0.422s] -- Up-to-date: /home/hexmovr02/hexmovr_manager/install/hexmovr_moto_panel/include
+[0.422s] -- Up-to-date: /home/hexmovr02/hexmovr_manager/install/hexmovr_moto_panel/include/hexmovr_moto_panel
+[0.423s] -- Up-to-date: /home/hexmovr02/hexmovr_manager/install/hexmovr_moto_panel/include/hexmovr_moto_panel/hexmovr_panel.hpp
+[0.423s] -- Up-to-date: /home/hexmovr02/hexmovr_manager/install/hexmovr_moto_panel/share/hexmovr_moto_panel/plugin_description.xml
+[0.423s] -- Up-to-date: /home/hexmovr02/hexmovr_manager/install/hexmovr_moto_panel/share/hexmovr_moto_panel/environment/library_path.sh
+[0.423s] -- Up-to-date: /home/hexmovr02/hexmovr_manager/install/hexmovr_moto_panel/share/hexmovr_moto_panel/environment/library_path.dsv
+[0.423s] -- Up-to-date: /home/hexmovr02/hexmovr_manager/install/hexmovr_moto_panel/share/ament_index/resource_index/package_run_dependencies/hexmovr_moto_panel
+[0.423s] -- Up-to-date: /home/hexmovr02/hexmovr_manager/install/hexmovr_moto_panel/share/ament_index/resource_index/parent_prefix_path/hexmovr_moto_panel
+[0.423s] -- Up-to-date: /home/hexmovr02/hexmovr_manager/install/hexmovr_moto_panel/share/hexmovr_moto_panel/environment/ament_prefix_path.sh
+[0.423s] -- Up-to-date: /home/hexmovr02/hexmovr_manager/install/hexmovr_moto_panel/share/hexmovr_moto_panel/environment/ament_prefix_path.dsv
+[0.423s] -- Up-to-date: /home/hexmovr02/hexmovr_manager/install/hexmovr_moto_panel/share/hexmovr_moto_panel/environment/path.sh
+[0.423s] -- Up-to-date: /home/hexmovr02/hexmovr_manager/install/hexmovr_moto_panel/share/hexmovr_moto_panel/environment/path.dsv
+[0.423s] -- Up-to-date: /home/hexmovr02/hexmovr_manager/install/hexmovr_moto_panel/share/hexmovr_moto_panel/local_setup.bash
+[0.423s] -- Up-to-date: /home/hexmovr02/hexmovr_manager/install/hexmovr_moto_panel/share/hexmovr_moto_panel/local_setup.sh
+[0.423s] -- Up-to-date: /home/hexmovr02/hexmovr_manager/install/hexmovr_moto_panel/share/hexmovr_moto_panel/local_setup.zsh
+[0.424s] -- Up-to-date: /home/hexmovr02/hexmovr_manager/install/hexmovr_moto_panel/share/hexmovr_moto_panel/local_setup.dsv
+[0.424s] -- Installing: /home/hexmovr02/hexmovr_manager/install/hexmovr_moto_panel/share/hexmovr_moto_panel/package.dsv
+[0.424s] -- Up-to-date: /home/hexmovr02/hexmovr_manager/install/hexmovr_moto_panel/share/ament_index/resource_index/packages/hexmovr_moto_panel
+[0.424s] -- Up-to-date: /home/hexmovr02/hexmovr_manager/install/hexmovr_moto_panel/share/ament_index/resource_index/rviz_common__pluginlib__plugin/hexmovr_moto_panel
+[0.424s] -- Up-to-date: /home/hexmovr02/hexmovr_manager/install/hexmovr_moto_panel/share/hexmovr_moto_panel/cmake/hexmovr_moto_panelExport.cmake
+[0.424s] -- Up-to-date: /home/hexmovr02/hexmovr_manager/install/hexmovr_moto_panel/share/hexmovr_moto_panel/cmake/hexmovr_moto_panelExport-noconfig.cmake
+[0.424s] -- Up-to-date: /home/hexmovr02/hexmovr_manager/install/hexmovr_moto_panel/share/hexmovr_moto_panel/cmake/ament_cmake_export_include_directories-extras.cmake
+[0.424s] -- Up-to-date: /home/hexmovr02/hexmovr_manager/install/hexmovr_moto_panel/share/hexmovr_moto_panel/cmake/ament_cmake_export_libraries-extras.cmake
+[0.424s] -- Up-to-date: /home/hexmovr02/hexmovr_manager/install/hexmovr_moto_panel/share/hexmovr_moto_panel/cmake/ament_cmake_export_targets-extras.cmake
+[0.424s] -- Up-to-date: /home/hexmovr02/hexmovr_manager/install/hexmovr_moto_panel/share/hexmovr_moto_panel/cmake/hexmovr_moto_panelConfig.cmake
+[0.424s] -- Up-to-date: /home/hexmovr02/hexmovr_manager/install/hexmovr_moto_panel/share/hexmovr_moto_panel/cmake/hexmovr_moto_panelConfig-version.cmake
+[0.424s] -- Up-to-date: /home/hexmovr02/hexmovr_manager/install/hexmovr_moto_panel/share/hexmovr_moto_panel/package.xml
+[0.426s] Invoked command in '/home/hexmovr02/hexmovr_manager/build/hexmovr_moto_panel' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/hexmovr02/hexmovr_manager/install/my_python_pkg:/home/hexmovr02/rebotarm_ros2/install/rebotarm_moveit_demos:/home/hexmovr02/rebotarm_ros2/install/rebotarm_bringup:/home/hexmovr02/rebotarm_ros2/install/rebotarmcontroller:/home/hexmovr02/reBotArmController_ROS2/install/rebotarm_bringup:/home/hexmovr02/reBotArmController_ROS2/install/rebotarmcontroller:/opt/ros/humble /usr/bin/cmake --install /home/hexmovr02/hexmovr_manager/build/hexmovr_moto_panel

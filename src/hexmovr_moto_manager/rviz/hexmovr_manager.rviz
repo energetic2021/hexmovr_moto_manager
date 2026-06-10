@@ -1,0 +1,66 @@
+Panels:
+  - Class: hexmovr_moto_panel/HexmovrPanel
+    Name: Hexmovr Panel
+  - Class: rviz_common/Displays
+    Name: Displays
+  - Class: rviz_common/Selection
+    Name: Selection
+  - Class: rviz_common/Tool Properties
+    Name: Tool Properties
+  - Class: rviz_common/Views
+    Name: Views
+Visualization Manager:
+  Class: ""
+  Displays:
+    - Alpha: 0.5
+      Cell Size: 0.25
+      Class: rviz_default_plugins/Grid
+      Color: 160; 160; 160
+      Enabled: true
+      Line Style:
+        Line Width: 0.03
+        Value: Lines
+      Name: Grid
+      Plane: XY
+      Plane Cell Count: 20
+      Reference Frame: map
+      Value: true
+    - Class: rviz_default_plugins/MarkerArray
+      Enabled: true
+      Topic: /hexmovr_moto_manager/markers
+      Name: Hexmovr Markers
+      Namespaces:
+        {}
+      Queue Size: 10
+      Value: true
+    - Class: rviz_default_plugins/InteractiveMarkers
+      Enabled: true
+      Name: Hexmovr Controls
+      Show Descriptions: true
+      Show Axes: false
+      Show Visual Aids: true
+      Update Topic: /hexmovr_manager/update
+      Value: true
+  Enabled: true
+  Fixed Frame: map
+  Name: root
+  Tools:
+    - Class: rviz_default_plugins/Interact
+      Hide Inactive Objects: true
+    - Class: rviz_default_plugins/MoveCamera
+    - Class: rviz_default_plugins/Select
+    - Class: rviz_default_plugins/FocusCamera
+    - Class: rviz_default_plugins/Measure
+  Value: true
+  Views:
+    Current:
+      Class: rviz_default_plugins/Orbit
+      Distance: 2.4
+      Focal Point:
+        X: 0.6
+        Y: 0.0
+        Z: 0.0
+      Name: Current View
+      Pitch: 0.78
+      Target Frame: <Fixed Frame>
+      Yaw: 0.72

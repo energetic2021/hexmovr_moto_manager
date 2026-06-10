@@ -1,0 +1,2 @@
+Consolidate compiler generated dependencies of target hexmovr_moto_panel
+[ 50%] Building CXX object CMakeFiles/hexmovr_moto_panel.dir/src/hexmovr_panel.cpp.o

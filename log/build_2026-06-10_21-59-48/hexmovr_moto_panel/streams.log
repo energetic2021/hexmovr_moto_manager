@@ -1,0 +1,11 @@
+[0.010s] Invoking command in '/home/hexmovr02/hexmovr_manager/build/hexmovr_moto_panel': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/hexmovr02/hexmovr_manager/install/my_python_pkg:/home/hexmovr02/rebotarm_ros2/install/rebotarm_moveit_demos:/home/hexmovr02/rebotarm_ros2/install/rebotarm_bringup:/home/hexmovr02/rebotarm_ros2/install/rebotarmcontroller:/home/hexmovr02/reBotArmController_ROS2/install/rebotarm_bringup:/home/hexmovr02/reBotArmController_ROS2/install/rebotarmcontroller:/opt/ros/humble /usr/bin/cmake --build /home/hexmovr02/hexmovr_manager/build/hexmovr_moto_panel -- -j32 -l32
+[0.050s] Consolidate compiler generated dependencies of target hexmovr_moto_panel
+[0.064s] [ 50%] Building CXX object CMakeFiles/hexmovr_moto_panel.dir/src/hexmovr_panel.cpp.o
+[2.336s] /home/hexmovr02/hexmovr_manager/src/hexmovr_moto_panel/src/hexmovr_panel.cpp: In lambda function:
+[2.336s] /home/hexmovr02/hexmovr_manager/src/hexmovr_moto_panel/src/hexmovr_panel.cpp:1133:16: error: ‘class QWidget’ has no member named ‘setText’
+[2.336s]  1133 |         label->setText(text);
+[2.336s]       |                ^~~~~~~
+[4.161s] gmake[2]: *** [CMakeFiles/hexmovr_moto_panel.dir/build.make:76：CMakeFiles/hexmovr_moto_panel.dir/src/hexmovr_panel.cpp.o] 错误 1
+[4.162s] gmake[1]: *** [CMakeFiles/Makefile2:137：CMakeFiles/hexmovr_moto_panel.dir/all] 错误 2
+[4.162s] gmake: *** [Makefile:146：all] 错误 2
+[30.027s] Invoked command in '/home/hexmovr02/hexmovr_manager/build/hexmovr_moto_panel' returned '2': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/hexmovr02/hexmovr_manager/install/my_python_pkg:/home/hexmovr02/rebotarm_ros2/install/rebotarm_moveit_demos:/home/hexmovr02/rebotarm_ros2/install/rebotarm_bringup:/home/hexmovr02/rebotarm_ros2/install/rebotarmcontroller:/home/hexmovr02/reBotArmController_ROS2/install/rebotarm_bringup:/home/hexmovr02/reBotArmController_ROS2/install/rebotarmcontroller:/opt/ros/humble /usr/bin/cmake --build /home/hexmovr02/hexmovr_manager/build/hexmovr_moto_panel -- -j32 -l32

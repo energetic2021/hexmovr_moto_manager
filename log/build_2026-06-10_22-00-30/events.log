@@ -1,0 +1,347 @@
+[0.000000] (-) TimerEvent: {}
+[0.000152] (-) JobUnselected: {'identifier': 'hexmovr_moto_manager'}
+[0.000312] (hexmovr_moto_panel) JobQueued: {'identifier': 'hexmovr_moto_panel', 'dependencies': OrderedDict()}
+[0.000453] (hexmovr_moto_panel) JobStarted: {'identifier': 'hexmovr_moto_panel'}
+[0.007373] (hexmovr_moto_panel) JobProgress: {'identifier': 'hexmovr_moto_panel', 'progress': 'cmake'}
+[0.008021] (hexmovr_moto_panel) JobProgress: {'identifier': 'hexmovr_moto_panel', 'progress': 'build'}
+[0.008853] (hexmovr_moto_panel) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/hexmovr02/hexmovr_manager/build/hexmovr_moto_panel', '--', '-j32', '-l32'], 'cwd': '/home/hexmovr02/hexmovr_manager/build/hexmovr_moto_panel', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('VSCODE_CWD', '/home/hexmovr02/hexmovr_manager'), ('ANTHROPIC_MODEL', 'deepseek-chat'), ('VSCODE_ESM_ENTRYPOINT', 'vs/workbench/api/node/extensionHostProcess'), ('CODEX_CI', '1'), ('LANGUAGE', 'zh_CN:zh'), ('USER', 'hexmovr02'), ('SNAP_COMMON', '/var/snap/code/common'), ('CODEX_INTERNAL_ORIGINATOR_OVERRIDE', 'codex_vscode'), ('VSCODE_NLS_CONFIG', '{"userLocale":"zh-cn","osLocale":"zh-cn","resolvedLanguage":"en","defaultMessagesFile":"/snap/code/243/usr/share/code/resources/app/out/nls.messages.json","locale":"zh-cn","availableLanguages":{}}'), ('FONTCONFIG_PATH', '/etc/fonts'), ('GIO_MODULE_DIR', '/home/hexmovr02/snap/code/common/.cache/gio-modules'), ('VSCODE_HANDLES_UNCAUGHT_ERRORS', 'true'), ('XDG_SESSION_TYPE', 'wayland'), ('DEBUG', 'release'), ('SNAP_UID', '1000'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/home/hexmovr02/rebotarm_ros2/install/rebotarm_msgs/lib:/home/hexmovr02/reBotArmController_ROS2/install/rebotarm_msgs/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home/hexmovr02'), ('CHROME_DESKTOP', 'code.desktop'), ('SNAP_LIBRARY_PATH', '/var/lib/snapd/lib/gl:/var/lib/snapd/lib/gl32'), ('OLDPWD', '/home/hexmovr02'), ('DESKTOP_SESSION', 'ubuntu'), ('SNAP_USER_DATA', '/home/hexmovr02/snap/code/243'), ('GTK_PATH', '/snap/code/243/usr/lib/x86_64-linux-gnu/gtk-3.0'), ('VSCODE_IPC_HOOK', '/run/user/1000/vscode-84c7d16a-1.12-main.sock'), ('GTK_IM_MODULE_FILE', '/home/hexmovr02/snap/code/common/.cache/immodules/immodules.cache'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('PAGER', 'cat'), ('MANAGERPID', '1740'), ('LC_CTYPE', 'C.UTF-8'), ('SYSTEMD_EXEC_PID', '2096'), ('IM_CONFIG_CHECK_ENV', '1'), ('NO_COLOR', '1'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('SNAP_REVISION', '243'), ('COLORTERM', ''), ('TERMINATOR_DBUS_NAME', 'net.tenshu.Terminator25ef4b219e3b005583550f2b0f9f990c3'), ('GIO_LAUNCHED_DESKTOP_FILE_PID', '1235330'), ('VSCODE_CRASH_REPORTER_PROCESS_TYPE', 'extensionHost'), ('IM_CONFIG_PHASE', '1'), ('WAYLAND_DISPLAY', 'wayland-0'), ('COLCON_PREFIX_PATH', '/home/hexmovr02/hexmovr_manager/install:/home/hexmovr02/rebotarm_ros2/install:/home/hexmovr02/reBotArmController_ROS2/install:/home/hexmovr02/seeed/rebotarm_ros2/install:/home/hexmovr02/test/install'), ('API_TIMEOUT_MS', '60000'), ('APPLICATION_INSIGHTS_NO_STATSBEAT', 'true'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'hexmovr02'), ('SNAP_CONTEXT', 'gAULE_PNwXTeM5pRZmSXkolxkScvhKbn2vP-d9_dFZGz2nj5kJM4'), ('JOURNAL_STREAM', '8:1263'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_CONFIG_DIRS_VSCODE_SNAP_ORIG', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('XDG_SESSION_CLASS', 'user'), ('SNAP_VERSION', '8761a556'), ('XDG_DATA_DIRS_VSCODE_SNAP_ORIG', '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('RUST_LOG', 'warn'), ('USERNAME', 'hexmovr02'), ('ANTHROPIC_BASE_URL', 'https://api.deepseek.com/anthropic'), ('TERM', 'dumb'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('SNAP_INSTANCE_NAME', 'code'), ('FC_FONTATIONS', '1'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/home/hexmovr02/.local/bin:/home/hexmovr02/.codex/tmp/arg0/codex-arg0Dw3KD2:/home/hexmovr02/.npm-global/bin:/opt/ros/humble/bin:/home/hexmovr02/.cargo/bin:/home/hexmovr02/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin:/home/hexmovr02/.vscode/extensions/openai.chatgpt-26.602.71036-linux-x64/bin/linux-x86_64'), ('SESSION_MANAGER', 'local/hexmovr02:@/tmp/.ICE-unix/1893,unix/hexmovr02:/tmp/.ICE-unix/1893'), ('GTK_EXE_PREFIX', '/snap/code/243/usr'), ('INVOCATION_ID', '2605247cae7447c9a64ddf300480ae5e'), ('XDG_MENU_PREFIX', 'gnome-'), ('GNOME_SETUP_DISPLAY', ':1'), ('SNAP_DATA', '/var/snap/code/243'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('GDK_BACKEND', 'x11'), ('DISPLAY', ':0'), ('LOCPATH', '/snap/code/243/usr/lib/locale'), ('CODEX_SANDBOX_NETWORK_DISABLED', '1'), ('TERMINATOR_DBUS_PATH', '/net/tenshu/Terminator2'), ('LANG', 'C.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('IBUS_DISABLE_SNOOPER', '1'), ('XDG_DATA_HOME', '/home/hexmovr02/snap/code/243/.local/share'), ('XMODIFIERS', '@im=ibus'), ('GH_PAGER', 'cat'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/.mutter-Xwaylandauth.QQNGQ3'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SNAP_USER_COMMON', '/home/hexmovr02/snap/code/common'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('GSETTINGS_SCHEMA_DIR', '/home/hexmovr02/snap/code/243/.local/share/glib-2.0/schemas'), ('SNAP_ARCH', 'amd64'), ('AMENT_PREFIX_PATH', '/home/hexmovr02/hexmovr_manager/install/my_python_pkg:/home/hexmovr02/rebotarm_ros2/install/rebotarm_moveit_demos:/home/hexmovr02/rebotarm_ros2/install/rebotarm_moveit_config:/home/hexmovr02/rebotarm_ros2/install/rebotarm_bringup:/home/hexmovr02/rebotarm_ros2/install/rebotarmcontroller:/home/hexmovr02/rebotarm_ros2/install/rebotarm_msgs:/home/hexmovr02/reBotArmController_ROS2/install/rebotarm_bringup:/home/hexmovr02/reBotArmController_ROS2/install/rebotarmcontroller:/home/hexmovr02/reBotArmController_ROS2/install/rebotarm_msgs:/opt/ros/humble'), ('SNAP_COOKIE', 'gAULE_PNwXTeM5pRZmSXkolxkScvhKbn2vP-d9_dFZGz2nj5kJM4'), ('SHELL', '/bin/bash'), ('TERMINATOR_UUID', 'urn:uuid:0b9380ed-8e57-4f0b-923f-ff6287121e54'), ('GDK_PIXBUF_MODULEDIR', '/snap/code/243/usr/lib/x86_64-linux-gnu/gdk-pixbuf-2.0/2.10.0/loaders'), ('ANTHROPIC_AUTH_TOKEN', 'sk-9d49c4bbdab94dbdab6b1d246f893d78'), ('QT_ACCESSIBILITY', '1'), ('ELECTRON_RUN_AS_NODE', '1'), ('NO_AT_BRIDGE', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('SNAP_NAME', 'code'), ('FONTCONFIG_FILE', '/etc/fonts/fonts.conf'), ('CODEX_THREAD_ID', '019eb190-6ccc-7793-aeb6-33b44f4bfa04'), ('GDK_PIXBUF_MODULE_FILE', '/home/hexmovr02/snap/code/common/.cache/gdk-pixbuf-loaders.cache'), ('SNAP_LAUNCHER_ARCH_TRIPLET', 'x86_64-linux-gnu'), ('GIT_PAGER', 'cat'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/hexmovr02/hexmovr_manager/build/hexmovr_moto_panel'), ('VSCODE_CLI', '1'), ('LC_ALL', 'C.UTF-8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('SNAP_REAL_HOME', '/home/hexmovr02'), ('VSCODE_CODE_CACHE_PATH', '/home/hexmovr02/.config/Code/CachedData/8761a5560cfd65fdd19ce7e2bd18dab5c0a4d84e'), ('XDG_DATA_DIRS', '/home/hexmovr02/snap/code/243/.local/share:/home/hexmovr02/snap/code/243:/snap/code/243/usr/share:/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('SNAP_EUID', '1000'), ('PYTHONPATH', '/home/hexmovr02/hexmovr_manager/install/my_python_pkg/lib/python3.10/site-packages:/home/hexmovr02/rebotarm_ros2/install/rebotarm_moveit_demos/lib/python3.10/site-packages:/home/hexmovr02/rebotarm_ros2/install/rebotarm_bringup/lib/python3.10/site-packages:/home/hexmovr02/rebotarm_ros2/install/rebotarmcontroller/lib/python3.10/site-packages:/home/hexmovr02/rebotarm_ros2/install/rebotarm_msgs/local/lib/python3.10/dist-packages:/home/hexmovr02/reBotArmController_ROS2/build/rebotarm_bringup:/home/hexmovr02/reBotArmController_ROS2/install/rebotarm_bringup/lib/python3.10/site-packages:/home/hexmovr02/reBotArmController_ROS2/build/rebotarmcontroller:/home/hexmovr02/reBotArmController_ROS2/install/rebotarmcontroller/lib/python3.10/site-packages:/home/hexmovr02/reBotArmController_ROS2/install/rebotarm_msgs/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('SNAP', '/snap/code/243'), ('COLCON', '1'), ('VTE_VERSION', '6800'), ('ELECTRON_NO_ATTACH_CONSOLE', '1'), ('CMAKE_PREFIX_PATH', '/home/hexmovr02/rebotarm_ros2/install/rebotarm_moveit_config:/home/hexmovr02/rebotarm_ros2/install/rebotarm_msgs:/home/hexmovr02/reBotArmController_ROS2/install/rebotarm_msgs:/home/hexmovr02/hexmovr_manager/install/my_python_pkg:/home/hexmovr02/rebotarm_ros2/install/rebotarm_moveit_demos:/home/hexmovr02/rebotarm_ros2/install/rebotarm_bringup:/home/hexmovr02/rebotarm_ros2/install/rebotarmcontroller:/home/hexmovr02/reBotArmController_ROS2/install/rebotarm_bringup:/home/hexmovr02/reBotArmController_ROS2/install/rebotarmcontroller:/opt/ros/humble'), ('VSCODE_PID', '23373')]), 'shell': False}
+[0.059655] (hexmovr_moto_panel) StdoutLine: {'line': b'Consolidate compiler generated dependencies of target hexmovr_moto_panel\n'}
+[0.074196] (hexmovr_moto_panel) StdoutLine: {'line': b'[ 50%] Building CXX object CMakeFiles/hexmovr_moto_panel.dir/src/hexmovr_panel.cpp.o\n'}
+[0.099861] (-) TimerEvent: {}
+[0.200118] (-) TimerEvent: {}
+[0.300377] (-) TimerEvent: {}
+[0.400666] (-) TimerEvent: {}
+[0.500848] (-) TimerEvent: {}
+[0.601051] (-) TimerEvent: {}
+[0.701346] (-) TimerEvent: {}
+[0.801536] (-) TimerEvent: {}
+[0.901731] (-) TimerEvent: {}
+[1.001905] (-) TimerEvent: {}
+[1.102109] (-) TimerEvent: {}
+[1.202387] (-) TimerEvent: {}
+[1.302603] (-) TimerEvent: {}
+[1.402912] (-) TimerEvent: {}
+[1.503222] (-) TimerEvent: {}
+[1.603538] (-) TimerEvent: {}
+[1.703856] (-) TimerEvent: {}
+[1.804197] (-) TimerEvent: {}
+[1.904617] (-) TimerEvent: {}
+[2.004880] (-) TimerEvent: {}
+[2.105136] (-) TimerEvent: {}
+[2.205342] (-) TimerEvent: {}
+[2.305500] (-) TimerEvent: {}
+[2.405703] (-) TimerEvent: {}
+[2.505947] (-) TimerEvent: {}
+[2.606228] (-) TimerEvent: {}
+[2.706389] (-) TimerEvent: {}
+[2.806546] (-) TimerEvent: {}
+[2.906734] (-) TimerEvent: {}
+[3.006979] (-) TimerEvent: {}
+[3.107241] (-) TimerEvent: {}
+[3.207394] (-) TimerEvent: {}
+[3.307571] (-) TimerEvent: {}
+[3.407807] (-) TimerEvent: {}
+[3.508054] (-) TimerEvent: {}
+[3.608309] (-) TimerEvent: {}
+[3.708476] (-) TimerEvent: {}
+[3.808637] (-) TimerEvent: {}
+[3.908970] (-) TimerEvent: {}
+[4.009232] (-) TimerEvent: {}
+[4.109581] (-) TimerEvent: {}
+[4.209892] (-) TimerEvent: {}
+[4.310214] (-) TimerEvent: {}
+[4.410564] (-) TimerEvent: {}
+[4.510833] (-) TimerEvent: {}
+[4.611069] (-) TimerEvent: {}
+[4.711356] (-) TimerEvent: {}
+[4.811522] (-) TimerEvent: {}
+[4.911710] (-) TimerEvent: {}
+[5.011886] (-) TimerEvent: {}
+[5.112136] (-) TimerEvent: {}
+[5.212316] (-) TimerEvent: {}
+[5.312468] (-) TimerEvent: {}
+[5.412655] (-) TimerEvent: {}
+[5.512895] (-) TimerEvent: {}
+[5.613133] (-) TimerEvent: {}
+[5.713357] (-) TimerEvent: {}
+[5.813508] (-) TimerEvent: {}
+[5.913699] (-) TimerEvent: {}
+[6.013879] (-) TimerEvent: {}
+[6.114125] (-) TimerEvent: {}
+[6.214339] (-) TimerEvent: {}
+[6.314490] (-) TimerEvent: {}
+[6.414660] (-) TimerEvent: {}
+[6.514961] (-) TimerEvent: {}
+[6.615225] (-) TimerEvent: {}
+[6.715383] (-) TimerEvent: {}
+[6.815624] (-) TimerEvent: {}
+[6.872275] (hexmovr_moto_panel) StdoutLine: {'line': b'[100%] Linking CXX shared library libhexmovr_moto_panel.so\n'}
+[6.915807] (-) TimerEvent: {}
+[7.016056] (-) TimerEvent: {}
+[7.116314] (-) TimerEvent: {}
+[7.216479] (-) TimerEvent: {}
+[7.316672] (-) TimerEvent: {}
+[7.416927] (-) TimerEvent: {}
+[7.517225] (-) TimerEvent: {}
+[7.617396] (-) TimerEvent: {}
+[7.717677] (-) TimerEvent: {}
+[7.817944] (-) TimerEvent: {}
+[7.918135] (-) TimerEvent: {}
+[8.018409] (-) TimerEvent: {}
+[8.043370] (hexmovr_moto_panel) StdoutLine: {'line': b'[100%] Built target hexmovr_moto_panel\n'}
+[8.053684] (hexmovr_moto_panel) CommandEnded: {'returncode': 0}
+[8.054806] (hexmovr_moto_panel) JobProgress: {'identifier': 'hexmovr_moto_panel', 'progress': 'install'}
+[8.061554] (hexmovr_moto_panel) Command: {'cmd': ['/usr/bin/cmake', '--install', '/home/hexmovr02/hexmovr_manager/build/hexmovr_moto_panel'], 'cwd': '/home/hexmovr02/hexmovr_manager/build/hexmovr_moto_panel', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('VSCODE_CWD', '/home/hexmovr02/hexmovr_manager'), ('ANTHROPIC_MODEL', 'deepseek-chat'), ('VSCODE_ESM_ENTRYPOINT', 'vs/workbench/api/node/extensionHostProcess'), ('CODEX_CI', '1'), ('LANGUAGE', 'zh_CN:zh'), ('USER', 'hexmovr02'), ('SNAP_COMMON', '/var/snap/code/common'), ('CODEX_INTERNAL_ORIGINATOR_OVERRIDE', 'codex_vscode'), ('VSCODE_NLS_CONFIG', '{"userLocale":"zh-cn","osLocale":"zh-cn","resolvedLanguage":"en","defaultMessagesFile":"/snap/code/243/usr/share/code/resources/app/out/nls.messages.json","locale":"zh-cn","availableLanguages":{}}'), ('FONTCONFIG_PATH', '/etc/fonts'), ('GIO_MODULE_DIR', '/home/hexmovr02/snap/code/common/.cache/gio-modules'), ('VSCODE_HANDLES_UNCAUGHT_ERRORS', 'true'), ('XDG_SESSION_TYPE', 'wayland'), ('DEBUG', 'release'), ('SNAP_UID', '1000'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/home/hexmovr02/rebotarm_ros2/install/rebotarm_msgs/lib:/home/hexmovr02/reBotArmController_ROS2/install/rebotarm_msgs/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home/hexmovr02'), ('CHROME_DESKTOP', 'code.desktop'), ('SNAP_LIBRARY_PATH', '/var/lib/snapd/lib/gl:/var/lib/snapd/lib/gl32'), ('OLDPWD', '/home/hexmovr02'), ('DESKTOP_SESSION', 'ubuntu'), ('SNAP_USER_DATA', '/home/hexmovr02/snap/code/243'), ('GTK_PATH', '/snap/code/243/usr/lib/x86_64-linux-gnu/gtk-3.0'), ('VSCODE_IPC_HOOK', '/run/user/1000/vscode-84c7d16a-1.12-main.sock'), ('GTK_IM_MODULE_FILE', '/home/hexmovr02/snap/code/common/.cache/immodules/immodules.cache'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('PAGER', 'cat'), ('MANAGERPID', '1740'), ('LC_CTYPE', 'C.UTF-8'), ('SYSTEMD_EXEC_PID', '2096'), ('IM_CONFIG_CHECK_ENV', '1'), ('NO_COLOR', '1'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('SNAP_REVISION', '243'), ('COLORTERM', ''), ('TERMINATOR_DBUS_NAME', 'net.tenshu.Terminator25ef4b219e3b005583550f2b0f9f990c3'), ('GIO_LAUNCHED_DESKTOP_FILE_PID', '1235330'), ('VSCODE_CRASH_REPORTER_PROCESS_TYPE', 'extensionHost'), ('IM_CONFIG_PHASE', '1'), ('WAYLAND_DISPLAY', 'wayland-0'), ('COLCON_PREFIX_PATH', '/home/hexmovr02/hexmovr_manager/install:/home/hexmovr02/rebotarm_ros2/install:/home/hexmovr02/reBotArmController_ROS2/install:/home/hexmovr02/seeed/rebotarm_ros2/install:/home/hexmovr02/test/install'), ('API_TIMEOUT_MS', '60000'), ('APPLICATION_INSIGHTS_NO_STATSBEAT', 'true'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'hexmovr02'), ('SNAP_CONTEXT', 'gAULE_PNwXTeM5pRZmSXkolxkScvhKbn2vP-d9_dFZGz2nj5kJM4'), ('JOURNAL_STREAM', '8:1263'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_CONFIG_DIRS_VSCODE_SNAP_ORIG', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('XDG_SESSION_CLASS', 'user'), ('SNAP_VERSION', '8761a556'), ('XDG_DATA_DIRS_VSCODE_SNAP_ORIG', '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('RUST_LOG', 'warn'), ('USERNAME', 'hexmovr02'), ('ANTHROPIC_BASE_URL', 'https://api.deepseek.com/anthropic'), ('TERM', 'dumb'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('SNAP_INSTANCE_NAME', 'code'), ('FC_FONTATIONS', '1'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/home/hexmovr02/.local/bin:/home/hexmovr02/.codex/tmp/arg0/codex-arg0Dw3KD2:/home/hexmovr02/.npm-global/bin:/opt/ros/humble/bin:/home/hexmovr02/.cargo/bin:/home/hexmovr02/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin:/home/hexmovr02/.vscode/extensions/openai.chatgpt-26.602.71036-linux-x64/bin/linux-x86_64'), ('SESSION_MANAGER', 'local/hexmovr02:@/tmp/.ICE-unix/1893,unix/hexmovr02:/tmp/.ICE-unix/1893'), ('GTK_EXE_PREFIX', '/snap/code/243/usr'), ('INVOCATION_ID', '2605247cae7447c9a64ddf300480ae5e'), ('XDG_MENU_PREFIX', 'gnome-'), ('GNOME_SETUP_DISPLAY', ':1'), ('SNAP_DATA', '/var/snap/code/243'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('GDK_BACKEND', 'x11'), ('DISPLAY', ':0'), ('LOCPATH', '/snap/code/243/usr/lib/locale'), ('CODEX_SANDBOX_NETWORK_DISABLED', '1'), ('TERMINATOR_DBUS_PATH', '/net/tenshu/Terminator2'), ('LANG', 'C.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('IBUS_DISABLE_SNOOPER', '1'), ('XDG_DATA_HOME', '/home/hexmovr02/snap/code/243/.local/share'), ('XMODIFIERS', '@im=ibus'), ('GH_PAGER', 'cat'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/.mutter-Xwaylandauth.QQNGQ3'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SNAP_USER_COMMON', '/home/hexmovr02/snap/code/common'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('GSETTINGS_SCHEMA_DIR', '/home/hexmovr02/snap/code/243/.local/share/glib-2.0/schemas'), ('SNAP_ARCH', 'amd64'), ('AMENT_PREFIX_PATH', '/home/hexmovr02/hexmovr_manager/install/my_python_pkg:/home/hexmovr02/rebotarm_ros2/install/rebotarm_moveit_demos:/home/hexmovr02/rebotarm_ros2/install/rebotarm_moveit_config:/home/hexmovr02/rebotarm_ros2/install/rebotarm_bringup:/home/hexmovr02/rebotarm_ros2/install/rebotarmcontroller:/home/hexmovr02/rebotarm_ros2/install/rebotarm_msgs:/home/hexmovr02/reBotArmController_ROS2/install/rebotarm_bringup:/home/hexmovr02/reBotArmController_ROS2/install/rebotarmcontroller:/home/hexmovr02/reBotArmController_ROS2/install/rebotarm_msgs:/opt/ros/humble'), ('SNAP_COOKIE', 'gAULE_PNwXTeM5pRZmSXkolxkScvhKbn2vP-d9_dFZGz2nj5kJM4'), ('SHELL', '/bin/bash'), ('TERMINATOR_UUID', 'urn:uuid:0b9380ed-8e57-4f0b-923f-ff6287121e54'), ('GDK_PIXBUF_MODULEDIR', '/snap/code/243/usr/lib/x86_64-linux-gnu/gdk-pixbuf-2.0/2.10.0/loaders'), ('ANTHROPIC_AUTH_TOKEN', 'sk-9d49c4bbdab94dbdab6b1d246f893d78'), ('QT_ACCESSIBILITY', '1'), ('ELECTRON_RUN_AS_NODE', '1'), ('NO_AT_BRIDGE', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('SNAP_NAME', 'code'), ('FONTCONFIG_FILE', '/etc/fonts/fonts.conf'), ('CODEX_THREAD_ID', '019eb190-6ccc-7793-aeb6-33b44f4bfa04'), ('GDK_PIXBUF_MODULE_FILE', '/home/hexmovr02/snap/code/common/.cache/gdk-pixbuf-loaders.cache'), ('SNAP_LAUNCHER_ARCH_TRIPLET', 'x86_64-linux-gnu'), ('GIT_PAGER', 'cat'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/hexmovr02/hexmovr_manager/build/hexmovr_moto_panel'), ('VSCODE_CLI', '1'), ('LC_ALL', 'C.UTF-8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('SNAP_REAL_HOME', '/home/hexmovr02'), ('VSCODE_CODE_CACHE_PATH', '/home/hexmovr02/.config/Code/CachedData/8761a5560cfd65fdd19ce7e2bd18dab5c0a4d84e'), ('XDG_DATA_DIRS', '/home/hexmovr02/snap/code/243/.local/share:/home/hexmovr02/snap/code/243:/snap/code/243/usr/share:/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('SNAP_EUID', '1000'), ('PYTHONPATH', '/home/hexmovr02/hexmovr_manager/install/my_python_pkg/lib/python3.10/site-packages:/home/hexmovr02/rebotarm_ros2/install/rebotarm_moveit_demos/lib/python3.10/site-packages:/home/hexmovr02/rebotarm_ros2/install/rebotarm_bringup/lib/python3.10/site-packages:/home/hexmovr02/rebotarm_ros2/install/rebotarmcontroller/lib/python3.10/site-packages:/home/hexmovr02/rebotarm_ros2/install/rebotarm_msgs/local/lib/python3.10/dist-packages:/home/hexmovr02/reBotArmController_ROS2/build/rebotarm_bringup:/home/hexmovr02/reBotArmController_ROS2/install/rebotarm_bringup/lib/python3.10/site-packages:/home/hexmovr02/reBotArmController_ROS2/build/rebotarmcontroller:/home/hexmovr02/reBotArmController_ROS2/install/rebotarmcontroller/lib/python3.10/site-packages:/home/hexmovr02/reBotArmController_ROS2/install/rebotarm_msgs/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('SNAP', '/snap/code/243'), ('COLCON', '1'), ('VTE_VERSION', '6800'), ('ELECTRON_NO_ATTACH_CONSOLE', '1'), ('CMAKE_PREFIX_PATH', '/home/hexmovr02/rebotarm_ros2/install/rebotarm_moveit_config:/home/hexmovr02/rebotarm_ros2/install/rebotarm_msgs:/home/hexmovr02/reBotArmController_ROS2/install/rebotarm_msgs:/home/hexmovr02/hexmovr_manager/install/my_python_pkg:/home/hexmovr02/rebotarm_ros2/install/rebotarm_moveit_demos:/home/hexmovr02/rebotarm_ros2/install/rebotarm_bringup:/home/hexmovr02/rebotarm_ros2/install/rebotarmcontroller:/home/hexmovr02/reBotArmController_ROS2/install/rebotarm_bringup:/home/hexmovr02/reBotArmController_ROS2/install/rebotarmcontroller:/opt/ros/humble'), ('VSCODE_PID', '23373')]), 'shell': False}
+[8.073481] (hexmovr_moto_panel) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[8.073593] (hexmovr_moto_panel) StdoutLine: {'line': b'-- Up-to-date: /home/hexmovr02/hexmovr_manager/install/hexmovr_moto_panel/share/hexmovr_moto_panel/plugin_description.xml\n'}
+[8.073849] (hexmovr_moto_panel) StdoutLine: {'line': b'-- Installing: /home/hexmovr02/hexmovr_manager/install/hexmovr_moto_panel/lib/libhexmovr_moto_panel.so\n'}
+[8.082165] (hexmovr_moto_panel) StdoutLine: {'line': b'-- Set runtime path of "/home/hexmovr02/hexmovr_manager/install/hexmovr_moto_panel/lib/libhexmovr_moto_panel.so" to ""\n'}
+[8.082520] (hexmovr_moto_panel) StdoutLine: {'line': b'-- Up-to-date: /home/hexmovr02/hexmovr_manager/install/hexmovr_moto_panel/include\n'}
+[8.082567] (hexmovr_moto_panel) StdoutLine: {'line': b'-- Up-to-date: /home/hexmovr02/hexmovr_manager/install/hexmovr_moto_panel/include/hexmovr_moto_panel\n'}
+[8.082635] (hexmovr_moto_panel) StdoutLine: {'line': b'-- Installing: /home/hexmovr02/hexmovr_manager/install/hexmovr_moto_panel/include/hexmovr_moto_panel/hexmovr_panel.hpp\n'}
+[8.082745] (hexmovr_moto_panel) StdoutLine: {'line': b'-- Up-to-date: /home/hexmovr02/hexmovr_manager/install/hexmovr_moto_panel/share/hexmovr_moto_panel/plugin_description.xml\n'}
+[8.082773] (hexmovr_moto_panel) StdoutLine: {'line': b'-- Up-to-date: /home/hexmovr02/hexmovr_manager/install/hexmovr_moto_panel/share/hexmovr_moto_panel/environment/library_path.sh\n'}
+[8.082799] (hexmovr_moto_panel) StdoutLine: {'line': b'-- Up-to-date: /home/hexmovr02/hexmovr_manager/install/hexmovr_moto_panel/share/hexmovr_moto_panel/environment/library_path.dsv\n'}
+[8.082825] (hexmovr_moto_panel) StdoutLine: {'line': b'-- Up-to-date: /home/hexmovr02/hexmovr_manager/install/hexmovr_moto_panel/share/ament_index/resource_index/package_run_dependencies/hexmovr_moto_panel\n'}
+[8.082852] (hexmovr_moto_panel) StdoutLine: {'line': b'-- Up-to-date: /home/hexmovr02/hexmovr_manager/install/hexmovr_moto_panel/share/ament_index/resource_index/parent_prefix_path/hexmovr_moto_panel\n'}
+[8.082877] (hexmovr_moto_panel) StdoutLine: {'line': b'-- Up-to-date: /home/hexmovr02/hexmovr_manager/install/hexmovr_moto_panel/share/hexmovr_moto_panel/environment/ament_prefix_path.sh\n'}
+[8.082905] (hexmovr_moto_panel) StdoutLine: {'line': b'-- Up-to-date: /home/hexmovr02/hexmovr_manager/install/hexmovr_moto_panel/share/hexmovr_moto_panel/environment/ament_prefix_path.dsv\n'}
+[8.082932] (hexmovr_moto_panel) StdoutLine: {'line': b'-- Up-to-date: /home/hexmovr02/hexmovr_manager/install/hexmovr_moto_panel/share/hexmovr_moto_panel/environment/path.sh\n'}
+[8.082958] (hexmovr_moto_panel) StdoutLine: {'line': b'-- Up-to-date: /home/hexmovr02/hexmovr_manager/install/hexmovr_moto_panel/share/hexmovr_moto_panel/environment/path.dsv\n'}
+[8.082984] (hexmovr_moto_panel) StdoutLine: {'line': b'-- Up-to-date: /home/hexmovr02/hexmovr_manager/install/hexmovr_moto_panel/share/hexmovr_moto_panel/local_setup.bash\n'}
+[8.083012] (hexmovr_moto_panel) StdoutLine: {'line': b'-- Up-to-date: /home/hexmovr02/hexmovr_manager/install/hexmovr_moto_panel/share/hexmovr_moto_panel/local_setup.sh\n'}
+[8.083037] (hexmovr_moto_panel) StdoutLine: {'line': b'-- Up-to-date: /home/hexmovr02/hexmovr_manager/install/hexmovr_moto_panel/share/hexmovr_moto_panel/local_setup.zsh\n'}
+[8.083063] (hexmovr_moto_panel) StdoutLine: {'line': b'-- Up-to-date: /home/hexmovr02/hexmovr_manager/install/hexmovr_moto_panel/share/hexmovr_moto_panel/local_setup.dsv\n'}
+[8.083089] (hexmovr_moto_panel) StdoutLine: {'line': b'-- Installing: /home/hexmovr02/hexmovr_manager/install/hexmovr_moto_panel/share/hexmovr_moto_panel/package.dsv\n'}
+[8.083115] (hexmovr_moto_panel) StdoutLine: {'line': b'-- Up-to-date: /home/hexmovr02/hexmovr_manager/install/hexmovr_moto_panel/share/ament_index/resource_index/packages/hexmovr_moto_panel\n'}
+[8.083140] (hexmovr_moto_panel) StdoutLine: {'line': b'-- Up-to-date: /home/hexmovr02/hexmovr_manager/install/hexmovr_moto_panel/share/ament_index/resource_index/rviz_common__pluginlib__plugin/hexmovr_moto_panel\n'}
+[8.083165] (hexmovr_moto_panel) StdoutLine: {'line': b'-- Up-to-date: /home/hexmovr02/hexmovr_manager/install/hexmovr_moto_panel/share/hexmovr_moto_panel/cmake/hexmovr_moto_panelExport.cmake\n'}
+[8.083198] (hexmovr_moto_panel) StdoutLine: {'line': b'-- Up-to-date: /home/hexmovr02/hexmovr_manager/install/hexmovr_moto_panel/share/hexmovr_moto_panel/cmake/hexmovr_moto_panelExport-noconfig.cmake\n'}
+[8.083225] (hexmovr_moto_panel) StdoutLine: {'line': b'-- Up-to-date: /home/hexmovr02/hexmovr_manager/install/hexmovr_moto_panel/share/hexmovr_moto_panel/cmake/ament_cmake_export_include_directories-extras.cmake\n'}
+[8.083250] (hexmovr_moto_panel) StdoutLine: {'line': b'-- Up-to-date: /home/hexmovr02/hexmovr_manager/install/hexmovr_moto_panel/share/hexmovr_moto_panel/cmake/ament_cmake_export_libraries-extras.cmake\n'}
+[8.083275] (hexmovr_moto_panel) StdoutLine: {'line': b'-- Up-to-date: /home/hexmovr02/hexmovr_manager/install/hexmovr_moto_panel/share/hexmovr_moto_panel/cmake/ament_cmake_export_targets-extras.cmake\n'}
+[8.083301] (hexmovr_moto_panel) StdoutLine: {'line': b'-- Up-to-date: /home/hexmovr02/hexmovr_manager/install/hexmovr_moto_panel/share/hexmovr_moto_panel/cmake/hexmovr_moto_panelConfig.cmake\n'}
+[8.083326] (hexmovr_moto_panel) StdoutLine: {'line': b'-- Up-to-date: /home/hexmovr02/hexmovr_manager/install/hexmovr_moto_panel/share/hexmovr_moto_panel/cmake/hexmovr_moto_panelConfig-version.cmake\n'}
+[8.083351] (hexmovr_moto_panel) StdoutLine: {'line': b'-- Up-to-date: /home/hexmovr02/hexmovr_manager/install/hexmovr_moto_panel/share/hexmovr_moto_panel/package.xml\n'}
+[8.118493] (-) TimerEvent: {}
+[8.218678] (-) TimerEvent: {}
+[8.318963] (-) TimerEvent: {}
+[8.419143] (-) TimerEvent: {}
+[8.519444] (-) TimerEvent: {}
+[8.619605] (-) TimerEvent: {}
+[8.719774] (-) TimerEvent: {}
+[8.820049] (-) TimerEvent: {}
+[8.920385] (-) TimerEvent: {}
+[9.020686] (-) TimerEvent: {}
+[9.120940] (-) TimerEvent: {}
+[9.221198] (-) TimerEvent: {}
+[9.321476] (-) TimerEvent: {}
+[9.421698] (-) TimerEvent: {}
+[9.521990] (-) TimerEvent: {}
+[9.622389] (-) TimerEvent: {}
+[9.722576] (-) TimerEvent: {}
+[9.822744] (-) TimerEvent: {}
+[9.922913] (-) TimerEvent: {}
+[10.023097] (-) TimerEvent: {}
+[10.123323] (-) TimerEvent: {}
+[10.223626] (-) TimerEvent: {}
+[10.323899] (-) TimerEvent: {}
+[10.424174] (-) TimerEvent: {}
+[10.524390] (-) TimerEvent: {}
+[10.624629] (-) TimerEvent: {}
+[10.724820] (-) TimerEvent: {}
+[10.825074] (-) TimerEvent: {}
+[10.925258] (-) TimerEvent: {}
+[11.025460] (-) TimerEvent: {}
+[11.125691] (-) TimerEvent: {}
+[11.225895] (-) TimerEvent: {}
+[11.326196] (-) TimerEvent: {}
+[11.426371] (-) TimerEvent: {}
+[11.526577] (-) TimerEvent: {}
+[11.626878] (-) TimerEvent: {}
+[11.727088] (-) TimerEvent: {}
+[11.827276] (-) TimerEvent: {}
+[11.927443] (-) TimerEvent: {}
+[12.027648] (-) TimerEvent: {}
+[12.127859] (-) TimerEvent: {}
+[12.228038] (-) TimerEvent: {}
+[12.328205] (-) TimerEvent: {}
+[12.428356] (-) TimerEvent: {}
+[12.528510] (-) TimerEvent: {}
+[12.628687] (-) TimerEvent: {}
+[12.728965] (-) TimerEvent: {}
+[12.829268] (-) TimerEvent: {}
+[12.929487] (-) TimerEvent: {}
+[13.029720] (-) TimerEvent: {}
+[13.130030] (-) TimerEvent: {}
+[13.230323] (-) TimerEvent: {}
+[13.330506] (-) TimerEvent: {}
+[13.430777] (-) TimerEvent: {}
+[13.530977] (-) TimerEvent: {}
+[13.631274] (-) TimerEvent: {}
+[13.731457] (-) TimerEvent: {}
+[13.831643] (-) TimerEvent: {}
+[13.931906] (-) TimerEvent: {}
+[14.032083] (-) TimerEvent: {}
+[14.132348] (-) TimerEvent: {}
+[14.232555] (-) TimerEvent: {}
+[14.332841] (-) TimerEvent: {}
+[14.433150] (-) TimerEvent: {}
+[14.533355] (-) TimerEvent: {}
+[14.633535] (-) TimerEvent: {}
+[14.733797] (-) TimerEvent: {}
+[14.834043] (-) TimerEvent: {}
+[14.934235] (-) TimerEvent: {}
+[15.034416] (-) TimerEvent: {}
+[15.134614] (-) TimerEvent: {}
+[15.234806] (-) TimerEvent: {}
+[15.335077] (-) TimerEvent: {}
+[15.435335] (-) TimerEvent: {}
+[15.535619] (-) TimerEvent: {}
+[15.635831] (-) TimerEvent: {}
+[15.736129] (-) TimerEvent: {}
+[15.836335] (-) TimerEvent: {}
+[15.936529] (-) TimerEvent: {}
+[16.036732] (-) TimerEvent: {}
+[16.136934] (-) TimerEvent: {}
+[16.237225] (-) TimerEvent: {}
+[16.337433] (-) TimerEvent: {}
+[16.437659] (-) TimerEvent: {}
+[16.537897] (-) TimerEvent: {}
+[16.638229] (-) TimerEvent: {}
+[16.738456] (-) TimerEvent: {}
+[16.838656] (-) TimerEvent: {}
+[16.938959] (-) TimerEvent: {}
+[17.039297] (-) TimerEvent: {}
+[17.139599] (-) TimerEvent: {}
+[17.239862] (-) TimerEvent: {}
+[17.340130] (-) TimerEvent: {}
+[17.440509] (-) TimerEvent: {}
+[17.540856] (-) TimerEvent: {}
+[17.641250] (-) TimerEvent: {}
+[17.741592] (-) TimerEvent: {}
+[17.841928] (-) TimerEvent: {}
+[17.942282] (-) TimerEvent: {}
+[18.042513] (-) TimerEvent: {}
+[18.142840] (-) TimerEvent: {}
+[18.243157] (-) TimerEvent: {}
+[18.343458] (-) TimerEvent: {}
+[18.443833] (-) TimerEvent: {}
+[18.544170] (-) TimerEvent: {}
+[18.644515] (-) TimerEvent: {}
+[18.744800] (-) TimerEvent: {}
+[18.845124] (-) TimerEvent: {}
+[18.945443] (-) TimerEvent: {}
+[19.045676] (-) TimerEvent: {}
+[19.145994] (-) TimerEvent: {}
+[19.246351] (-) TimerEvent: {}
+[19.346712] (-) TimerEvent: {}
+[19.447013] (-) TimerEvent: {}
+[19.547336] (-) TimerEvent: {}
+[19.647557] (-) TimerEvent: {}
+[19.747841] (-) TimerEvent: {}
+[19.848160] (-) TimerEvent: {}
+[19.948380] (-) TimerEvent: {}
+[20.048608] (-) TimerEvent: {}
+[20.148867] (-) TimerEvent: {}
+[20.249194] (-) TimerEvent: {}
+[20.349536] (-) TimerEvent: {}
+[20.449794] (-) TimerEvent: {}
+[20.550162] (-) TimerEvent: {}
+[20.650574] (-) TimerEvent: {}
+[20.750916] (-) TimerEvent: {}
+[20.851261] (-) TimerEvent: {}
+[20.951636] (-) TimerEvent: {}
+[21.051999] (-) TimerEvent: {}
+[21.152329] (-) TimerEvent: {}
+[21.252712] (-) TimerEvent: {}
+[21.353050] (-) TimerEvent: {}
+[21.453394] (-) TimerEvent: {}
+[21.553744] (-) TimerEvent: {}
+[21.654086] (-) TimerEvent: {}
+[21.754414] (-) TimerEvent: {}
+[21.854750] (-) TimerEvent: {}
+[21.955024] (-) TimerEvent: {}
+[22.055353] (-) TimerEvent: {}
+[22.155662] (-) TimerEvent: {}
+[22.255956] (-) TimerEvent: {}
+[22.356277] (-) TimerEvent: {}
+[22.456618] (-) TimerEvent: {}
+[22.556944] (-) TimerEvent: {}
+[22.657228] (-) TimerEvent: {}
+[22.757512] (-) TimerEvent: {}
+[22.857851] (-) TimerEvent: {}
+[22.958206] (-) TimerEvent: {}
+[23.058440] (-) TimerEvent: {}
+[23.158793] (-) TimerEvent: {}
+[23.259357] (-) TimerEvent: {}
+[23.359645] (-) TimerEvent: {}
+[23.460024] (-) TimerEvent: {}
+[23.560326] (-) TimerEvent: {}
+[23.660540] (-) TimerEvent: {}
+[23.760793] (-) TimerEvent: {}
+[23.861094] (-) TimerEvent: {}
+[23.961318] (-) TimerEvent: {}
+[24.061620] (-) TimerEvent: {}
+[24.161963] (-) TimerEvent: {}
+[24.262286] (-) TimerEvent: {}
+[24.362616] (-) TimerEvent: {}
+[24.462879] (-) TimerEvent: {}
+[24.563180] (-) TimerEvent: {}
+[24.663409] (-) TimerEvent: {}
+[24.763642] (-) TimerEvent: {}
+[24.863971] (-) TimerEvent: {}
+[24.964356] (-) TimerEvent: {}
+[25.064614] (-) TimerEvent: {}
+[25.164982] (-) TimerEvent: {}
+[25.265288] (-) TimerEvent: {}
+[25.365504] (-) TimerEvent: {}
+[25.465755] (-) TimerEvent: {}
+[25.566071] (-) TimerEvent: {}
+[25.666409] (-) TimerEvent: {}
+[25.766773] (-) TimerEvent: {}
+[25.867111] (-) TimerEvent: {}
+[25.967497] (-) TimerEvent: {}
+[26.067755] (-) TimerEvent: {}
+[26.168117] (-) TimerEvent: {}
+[26.268370] (-) TimerEvent: {}
+[26.368579] (-) TimerEvent: {}
+[26.468844] (-) TimerEvent: {}
+[26.569233] (-) TimerEvent: {}
+[26.669462] (-) TimerEvent: {}
+[26.769658] (-) TimerEvent: {}
+[26.869989] (-) TimerEvent: {}
+[26.970232] (-) TimerEvent: {}
+[27.070496] (-) TimerEvent: {}
+[27.170800] (-) TimerEvent: {}
+[27.271113] (-) TimerEvent: {}
+[27.371386] (-) TimerEvent: {}
+[27.471737] (-) TimerEvent: {}
+[27.572081] (-) TimerEvent: {}
+[27.672398] (-) TimerEvent: {}
+[27.772746] (-) TimerEvent: {}
+[27.873100] (-) TimerEvent: {}
+[27.973503] (-) TimerEvent: {}
+[28.073833] (-) TimerEvent: {}
+[28.174077] (-) TimerEvent: {}
+[28.274441] (-) TimerEvent: {}
+[28.374682] (-) TimerEvent: {}
+[28.474953] (-) TimerEvent: {}
+[28.575302] (-) TimerEvent: {}
+[28.675505] (-) TimerEvent: {}
+[28.775701] (-) TimerEvent: {}
+[28.876023] (-) TimerEvent: {}
+[28.976436] (-) TimerEvent: {}
+[29.076694] (-) TimerEvent: {}
+[29.177080] (-) TimerEvent: {}
+[29.277497] (-) TimerEvent: {}
+[29.377734] (-) TimerEvent: {}
+[29.478022] (-) TimerEvent: {}
+[29.578366] (-) TimerEvent: {}
+[29.678746] (-) TimerEvent: {}
+[29.778985] (-) TimerEvent: {}
+[29.879335] (-) TimerEvent: {}
+[29.979748] (-) TimerEvent: {}
+[30.023415] (hexmovr_moto_panel) CommandEnded: {'returncode': 0}
+[30.042385] (hexmovr_moto_panel) JobEnded: {'identifier': 'hexmovr_moto_panel', 'rc': 0}
+[30.043029] (-) EventReactorShutdown: {}

@@ -1,0 +1,24 @@
+[60.269s] Invoking command in '/home/hexmovr02/hexmovr_manager/src/hexmovr_moto_manager': PYTHONPATH=/home/hexmovr02/hexmovr_manager/build/hexmovr_moto_manager/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/hexmovr02/hexmovr_manager/install/hexmovr_moto_manager/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/hexmovr_moto_manager build --build-base /home/hexmovr02/hexmovr_manager/build/hexmovr_moto_manager/build install --record /home/hexmovr02/hexmovr_manager/build/hexmovr_moto_manager/install.log --single-version-externally-managed install_data
+[60.424s] running egg_info
+[60.424s] writing ../../build/hexmovr_moto_manager/hexmovr_moto_manager.egg-info/PKG-INFO
+[60.425s] writing dependency_links to ../../build/hexmovr_moto_manager/hexmovr_moto_manager.egg-info/dependency_links.txt
+[60.425s] writing entry points to ../../build/hexmovr_moto_manager/hexmovr_moto_manager.egg-info/entry_points.txt
+[60.425s] writing requirements to ../../build/hexmovr_moto_manager/hexmovr_moto_manager.egg-info/requires.txt
+[60.425s] writing top-level names to ../../build/hexmovr_moto_manager/hexmovr_moto_manager.egg-info/top_level.txt
+[60.427s] reading manifest file '../../build/hexmovr_moto_manager/hexmovr_moto_manager.egg-info/SOURCES.txt'
+[60.427s] writing manifest file '../../build/hexmovr_moto_manager/hexmovr_moto_manager.egg-info/SOURCES.txt'
+[60.427s] running build
+[60.427s] running build_py
+[60.428s] copying hexmovr_moto_manager/hexmovr_client.py -> /home/hexmovr02/hexmovr_manager/build/hexmovr_moto_manager/build/lib/hexmovr_moto_manager
+[60.428s] running install
+[60.428s] running install_lib
+[60.429s] copying /home/hexmovr02/hexmovr_manager/build/hexmovr_moto_manager/build/lib/hexmovr_moto_manager/hexmovr_client.py -> /home/hexmovr02/hexmovr_manager/install/hexmovr_moto_manager/lib/python3.10/site-packages/hexmovr_moto_manager
+[60.430s] byte-compiling /home/hexmovr02/hexmovr_manager/install/hexmovr_moto_manager/lib/python3.10/site-packages/hexmovr_moto_manager/hexmovr_client.py to hexmovr_client.cpython-310.pyc
+[60.433s] running install_data
+[60.433s] running install_egg_info
+[60.434s] removing '/home/hexmovr02/hexmovr_manager/install/hexmovr_moto_manager/lib/python3.10/site-packages/hexmovr_moto_manager-0.0.0-py3.10.egg-info' (and everything under it)
+[60.435s] Copying ../../build/hexmovr_moto_manager/hexmovr_moto_manager.egg-info to /home/hexmovr02/hexmovr_manager/install/hexmovr_moto_manager/lib/python3.10/site-packages/hexmovr_moto_manager-0.0.0-py3.10.egg-info
+[60.436s] running install_scripts
+[60.455s] Installing moto_scaner script to /home/hexmovr02/hexmovr_manager/install/hexmovr_moto_manager/lib/hexmovr_moto_manager
+[60.455s] writing list of installed files to '/home/hexmovr02/hexmovr_manager/build/hexmovr_moto_manager/install.log'
+[60.470s] Invoked command in '/home/hexmovr02/hexmovr_manager/src/hexmovr_moto_manager' returned '0': PYTHONPATH=/home/hexmovr02/hexmovr_manager/build/hexmovr_moto_manager/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/hexmovr02/hexmovr_manager/install/hexmovr_moto_manager/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/hexmovr_moto_manager build --build-base /home/hexmovr02/hexmovr_manager/build/hexmovr_moto_manager/build install --record /home/hexmovr02/hexmovr_manager/build/hexmovr_moto_manager/install.log --single-version-externally-managed install_data

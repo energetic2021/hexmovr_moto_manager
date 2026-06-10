@@ -1,0 +1,10 @@
+/home/hexmovr02/hexmovr_manager/build/hexmovr_moto_panel/CMakeFiles/uninstall.dir
+/home/hexmovr02/hexmovr_manager/build/hexmovr_moto_panel/CMakeFiles/hexmovr_moto_panel_uninstall.dir
+/home/hexmovr02/hexmovr_manager/build/hexmovr_moto_panel/CMakeFiles/hexmovr_moto_panel.dir
+/home/hexmovr02/hexmovr_manager/build/hexmovr_moto_panel/CMakeFiles/test.dir
+/home/hexmovr02/hexmovr_manager/build/hexmovr_moto_panel/CMakeFiles/edit_cache.dir
+/home/hexmovr02/hexmovr_manager/build/hexmovr_moto_panel/CMakeFiles/rebuild_cache.dir
+/home/hexmovr02/hexmovr_manager/build/hexmovr_moto_panel/CMakeFiles/list_install_components.dir
+/home/hexmovr02/hexmovr_manager/build/hexmovr_moto_panel/CMakeFiles/install.dir
+/home/hexmovr02/hexmovr_manager/build/hexmovr_moto_panel/CMakeFiles/install/local.dir
+/home/hexmovr02/hexmovr_manager/build/hexmovr_moto_panel/CMakeFiles/install/strip.dir
