@@ -13,9 +13,13 @@ hexmovr_moto_manager/can_transport.py
 hexmovr_moto_manager/hexmovr_client.py
 hexmovr_moto_manager/hexmovr_protocol.py
 hexmovr_moto_manager/moto_scaner.py
+hexmovr_moto_manager.egg-info/PKG-INFO
+hexmovr_moto_manager.egg-info/SOURCES.txt
+hexmovr_moto_manager.egg-info/dependency_links.txt
+hexmovr_moto_manager.egg-info/entry_points.txt
+hexmovr_moto_manager.egg-info/requires.txt
+hexmovr_moto_manager.egg-info/top_level.txt
+hexmovr_moto_manager.egg-info/zip-safe
 launch/hexmovr_manager.launch.py
 resource/hexmovr_moto_manager
 rviz/hexmovr_manager.rviz
-test/test_copyright.py
-test/test_flake8.py
-test/test_pep257.py

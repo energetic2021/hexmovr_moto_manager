@@ -1,3 +1,4 @@
+hexmovr_bridge
 setuptools
 
 [test]

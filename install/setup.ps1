@@ -28,6 +28,7 @@ _colcon_prefix_chain_powershell_source_script "/home/hexmovr02/test/install/loca
 _colcon_prefix_chain_powershell_source_script "/home/hexmovr02/seeed/rebotarm_ros2/install/local_setup.ps1"
 _colcon_prefix_chain_powershell_source_script "/home/hexmovr02/reBotArmController_ROS2/install/local_setup.ps1"
 _colcon_prefix_chain_powershell_source_script "/home/hexmovr02/rebotarm_ros2/install/local_setup.ps1"
+_colcon_prefix_chain_powershell_source_script "/home/hexmovr02/electric-version-wheel-foot/3.ROS2包/install/local_setup.ps1"
 
 # source this prefix
 $env:COLCON_CURRENT_PREFIX=(Split-Path $PSCommandPath -Parent)

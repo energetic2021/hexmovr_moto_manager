@@ -1,0 +1,22 @@
+running develop
+running egg_info
+creating hexmovr_bridge.egg-info
+writing hexmovr_bridge.egg-info/PKG-INFO
+writing dependency_links to hexmovr_bridge.egg-info/dependency_links.txt
+writing entry points to hexmovr_bridge.egg-info/entry_points.txt
+writing requirements to hexmovr_bridge.egg-info/requires.txt
+writing top-level names to hexmovr_bridge.egg-info/top_level.txt
+writing manifest file 'hexmovr_bridge.egg-info/SOURCES.txt'
+reading manifest file 'hexmovr_bridge.egg-info/SOURCES.txt'
+writing manifest file 'hexmovr_bridge.egg-info/SOURCES.txt'
+running build_ext
+Creating /home/hexmovr02/hexmovr_manager/install/hexmovr_bridge/lib/python3.10/site-packages/hexmovr-bridge.egg-link (link to .)
+Installing hexmovr_bridge script to /home/hexmovr02/hexmovr_manager/install/hexmovr_bridge/lib/hexmovr_bridge
+
+Installed /home/hexmovr02/hexmovr_manager/build/hexmovr_bridge
+running symlink_data
+creating /home/hexmovr02/hexmovr_manager/install/hexmovr_bridge/share/ament_index
+creating /home/hexmovr02/hexmovr_manager/install/hexmovr_bridge/share/ament_index/resource_index
+creating /home/hexmovr02/hexmovr_manager/install/hexmovr_bridge/share/ament_index/resource_index/packages
+symbolically linking /home/hexmovr02/hexmovr_manager/build/hexmovr_bridge/resource/hexmovr_bridge -> /home/hexmovr02/hexmovr_manager/install/hexmovr_bridge/share/ament_index/resource_index/packages
+symbolically linking /home/hexmovr02/hexmovr_manager/build/hexmovr_bridge/package.xml -> /home/hexmovr02/hexmovr_manager/install/hexmovr_bridge/share/hexmovr_bridge

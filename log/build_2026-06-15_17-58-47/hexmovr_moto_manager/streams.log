@@ -1,0 +1,21 @@
+[0.423s] Invoking command in '/home/hexmovr02/hexmovr_manager/build/hexmovr_moto_manager': AMENT_PREFIX_PATH=/home/hexmovr02/hexmovr_manager/install/hexmovr_bridge:${AMENT_PREFIX_PATH} PYTHONPATH=/home/hexmovr02/hexmovr_manager/build/hexmovr_moto_manager/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/hexmovr02/hexmovr_manager/install/hexmovr_moto_manager/lib/python3.10/site-packages:/home/hexmovr02/hexmovr_manager/build/hexmovr_bridge:/home/hexmovr02/hexmovr_manager/install/hexmovr_bridge/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/hexmovr02/hexmovr_manager/build/hexmovr_moto_manager/build --no-deps symlink_data --force
+[0.590s] running develop
+[0.688s] running egg_info
+[0.688s] writing hexmovr_moto_manager.egg-info/PKG-INFO
+[0.688s] writing dependency_links to hexmovr_moto_manager.egg-info/dependency_links.txt
+[0.688s] writing entry points to hexmovr_moto_manager.egg-info/entry_points.txt
+[0.688s] writing requirements to hexmovr_moto_manager.egg-info/requires.txt
+[0.688s] writing top-level names to hexmovr_moto_manager.egg-info/top_level.txt
+[0.689s] reading manifest file 'hexmovr_moto_manager.egg-info/SOURCES.txt'
+[0.690s] writing manifest file 'hexmovr_moto_manager.egg-info/SOURCES.txt'
+[0.691s] running build_ext
+[0.691s] Creating /home/hexmovr02/hexmovr_manager/install/hexmovr_moto_manager/lib/python3.10/site-packages/hexmovr-moto-manager.egg-link (link to .)
+[0.692s] Installing moto_scaner script to /home/hexmovr02/hexmovr_manager/install/hexmovr_moto_manager/lib/hexmovr_moto_manager
+[0.692s] 
+[0.692s] Installed /home/hexmovr02/hexmovr_manager/build/hexmovr_moto_manager
+[0.692s] running symlink_data
+[0.692s] symbolically linking /home/hexmovr02/hexmovr_manager/build/hexmovr_moto_manager/resource/hexmovr_moto_manager -> /home/hexmovr02/hexmovr_manager/install/hexmovr_moto_manager/share/ament_index/resource_index/packages
+[0.692s] symbolically linking /home/hexmovr02/hexmovr_manager/build/hexmovr_moto_manager/package.xml -> /home/hexmovr02/hexmovr_manager/install/hexmovr_moto_manager/share/hexmovr_moto_manager
+[0.692s] symbolically linking /home/hexmovr02/hexmovr_manager/build/hexmovr_moto_manager/launch/hexmovr_manager.launch.py -> /home/hexmovr02/hexmovr_manager/install/hexmovr_moto_manager/share/hexmovr_moto_manager/launch
+[0.692s] symbolically linking /home/hexmovr02/hexmovr_manager/build/hexmovr_moto_manager/rviz/hexmovr_manager.rviz -> /home/hexmovr02/hexmovr_manager/install/hexmovr_moto_manager/share/hexmovr_moto_manager/rviz
+[0.709s] Invoked command in '/home/hexmovr02/hexmovr_manager/build/hexmovr_moto_manager' returned '0': AMENT_PREFIX_PATH=/home/hexmovr02/hexmovr_manager/install/hexmovr_bridge:${AMENT_PREFIX_PATH} PYTHONPATH=/home/hexmovr02/hexmovr_manager/build/hexmovr_moto_manager/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/hexmovr02/hexmovr_manager/install/hexmovr_moto_manager/lib/python3.10/site-packages:/home/hexmovr02/hexmovr_manager/build/hexmovr_bridge:/home/hexmovr02/hexmovr_manager/install/hexmovr_bridge/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/hexmovr02/hexmovr_manager/build/hexmovr_moto_manager/build --no-deps symlink_data --force

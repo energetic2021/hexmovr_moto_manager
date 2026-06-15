@@ -1,0 +1,5 @@
+python-can
+setuptools
+
+[test]
+pytest

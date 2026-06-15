@@ -1,0 +1,13 @@
+Metadata-Version: 2.1
+Name: hexmovr-bridge
+Version: 0.1.0
+Summary: Pure Python ROS2 bridge for Hexmovr motors over SocketCAN
+Home-page: UNKNOWN
+Maintainer: hexmovr02
+Maintainer-email: energetic2021@gmail.com
+License: Apache-2.0
+Platform: UNKNOWN
+Provides-Extra: test
+
+UNKNOWN
+

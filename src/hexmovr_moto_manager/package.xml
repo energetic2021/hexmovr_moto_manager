@@ -15,6 +15,7 @@
   <depend>interactive_markers</depend>
   <depend>diagnostic_msgs</depend>
   <depend>tf2_ros</depend>
+  <depend>hexmovr_bridge</depend>
   <exec_depend>launch</exec_depend>
   <exec_depend>launch_ros</exec_depend>
   <exec_depend>rviz2</exec_depend>

@@ -1,0 +1,1 @@
+/home/hexmovr02/hexmovr_manager/src/hexmovr_moto_manager/launch/hexmovr_manager.launch.py

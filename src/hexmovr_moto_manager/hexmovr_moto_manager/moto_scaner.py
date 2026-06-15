@@ -452,10 +452,10 @@ class HexmovrMotoManagerNode(Node):
             arrow.id = 1000 + motor_id
             arrow.type = Marker.ARROW
             arrow.action = Marker.ADD
-            arrow.scale.x = 0.15
-            arrow.scale.y = 0.02
-            arrow.scale.z = 0.02
-            start = Point(x=x, y=0.0, z=0.10)
+            arrow.scale.x = 0.06
+            arrow.scale.y = 0.008
+            arrow.scale.z = 0.012
+            start = Point(x=x, y=0.0, z=0.065)
             direction = self._arrow_tip(x, view.snapshot.position_rad)
             arrow.points = [start, direction]
             arrow.color.r = 0.10
@@ -959,12 +959,12 @@ class HexmovrMotoManagerNode(Node):
         )
 
     def _arrow_tip(self, x: float, position_rad: float) -> Point:
-        length = 0.12
+        length = 0.045
         clamped = max(min(position_rad, math.pi), -math.pi)
         return Point(
             x=x + math.cos(clamped) * length,
             y=math.sin(clamped) * length,
-            z=0.10,
+            z=0.065,
         )
 
 

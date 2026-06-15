@@ -14,7 +14,7 @@ setup(
         ('share/' + package_name + '/launch', glob('launch/*.launch.py')),
         ('share/' + package_name + '/rviz', glob('rviz/*.rviz')),
     ],
-    install_requires=['setuptools'],
+    install_requires=['setuptools', 'hexmovr_bridge'],
     zip_safe=True,
     maintainer='hexmovr02',
     maintainer_email='energetic2021@gmail.com',

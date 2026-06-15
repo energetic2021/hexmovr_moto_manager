@@ -1,0 +1,17 @@
+package.xml
+setup.cfg
+setup.py
+hexmovr_bridge/__init__.py
+hexmovr_bridge/bus.py
+hexmovr_bridge/controller.py
+hexmovr_bridge/motor.py
+hexmovr_bridge/node.py
+hexmovr_bridge/protocol.py
+hexmovr_bridge.egg-info/PKG-INFO
+hexmovr_bridge.egg-info/SOURCES.txt
+hexmovr_bridge.egg-info/dependency_links.txt
+hexmovr_bridge.egg-info/entry_points.txt
+hexmovr_bridge.egg-info/requires.txt
+hexmovr_bridge.egg-info/top_level.txt
+hexmovr_bridge.egg-info/zip-safe
+resource/hexmovr_bridge

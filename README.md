@@ -132,6 +132,7 @@ ros2 topic pub --once /hexmovr_moto_manager/command std_msgs/msg/String \
 - 在 Panel 中查看故障历史
 - 在 Panel 中查看基础时间序列曲线
 - 在 Panel 右上角切换中文 / English 界面显示
+- 电机朝向指针已调整为更贴近本体比例的顶部短箭头
 
 说明：
 
@@ -161,6 +162,7 @@ ros2 topic pub --once /hexmovr_moto_manager/command std_msgs/msg/String \
 - RViz marker topic 和静态 TF 兼容性修正
 - 新增专门的 RViz Panel、批量命令、故障历史和基础曲线图
 - 新增 RViz Panel 中英文显示切换
+- 优化 RViz 电机朝向指针比例，减少悬空和过大视觉效果
 
 ## README 维护约定
 

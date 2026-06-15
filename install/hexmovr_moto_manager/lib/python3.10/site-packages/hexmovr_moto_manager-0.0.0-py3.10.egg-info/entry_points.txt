@@ -1,3 +1,0 @@
-[console_scripts]
-moto_scaner = hexmovr_moto_manager.moto_scaner:main
-
