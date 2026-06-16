@@ -1,10 +1,1 @@
-<library path="hexmovr_moto_panel">
-  <class
-    name="hexmovr_moto_panel/HexmovrPanel"
-    type="hexmovr_moto_panel::HexmovrPanel"
-    base_class_type="rviz_common::Panel">
-    <description>
-      Hexmovr motor management panel with parameter forms, batch tools, fault history, and plots.
-    </description>
-  </class>
-</library>
+/home/hexmovr02/hexmovr_manager/src/hexmovr_moto_panel/plugin_description.xml

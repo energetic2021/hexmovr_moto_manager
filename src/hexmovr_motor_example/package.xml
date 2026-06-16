@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<package format="3">
+  <name>hexmovr_motor_example</name>
+  <version>0.1.0</version>
+  <description>Example ROS2 package showing how to control Hexmovr motor ID 1 through hexmovr_moto_manager.</description>
+  <maintainer email="energetic2021@gmail.com">hexmovr02</maintainer>
+  <license>Apache-2.0</license>
+
+  <buildtool_depend>ament_python</buildtool_depend>
+
+  <exec_depend>rclpy</exec_depend>
+  <exec_depend>std_msgs</exec_depend>
+  <exec_depend>hexmovr_moto_manager</exec_depend>
+  <exec_depend>hexmovr_bridge</exec_depend>
+
+  <test_depend>python3-pytest</test_depend>
+
+  <export>
+    <build_type>ament_python</build_type>
+  </export>
+</package>

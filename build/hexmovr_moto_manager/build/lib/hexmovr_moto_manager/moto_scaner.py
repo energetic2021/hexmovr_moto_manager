@@ -132,8 +132,14 @@ class HexmovrMotoManagerNode(Node):
 
     def destroy_node(self) -> bool:
         if self._marker_server is not None:
-            self._marker_server.clear()
-            self._marker_server.applyChanges()
+            try:
+                self._marker_server.clear()
+                if rclpy.ok():
+                    self._marker_server.applyChanges()
+            except Exception as exc:
+                self.get_logger().debug(
+                    f"Skipped interactive marker cleanup during shutdown: {exc}"
+                )
         if self._client is not None:
             self._client.close()
         return super().destroy_node()
@@ -973,9 +979,14 @@ def main(args: Optional[list[str]] = None) -> None:
     node = HexmovrMotoManagerNode()
     try:
         rclpy.spin(node)
+    except KeyboardInterrupt:
+        node.get_logger().info("收到 Ctrl+C，准备退出。")
     finally:
-        node.destroy_node()
-        rclpy.shutdown()
+        try:
+            node.destroy_node()
+        finally:
+            if rclpy.ok():
+                rclpy.shutdown()
 
 
 if __name__ == "__main__":

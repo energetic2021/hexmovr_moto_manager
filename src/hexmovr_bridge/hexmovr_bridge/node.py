@@ -10,6 +10,14 @@ from rclpy.node import Node
 from std_msgs.msg import String
 
 from .controller import Controller
+from .protocol import (
+    ADVANCED_PARAM_NAMES,
+    CONTROL_PARAM_NAMES,
+    MITLimits,
+    AdvancedParam,
+    ControlParam,
+    PositionType,
+)
 
 
 @dataclass
@@ -106,6 +114,47 @@ class HexmovrBridgeNode(Node):
         elif op == "vel":
             motor.send_vel(float(payload.get("vel", 0.0)))
             self._continuous[motor_id] = ContinuousCommand(op, dict(payload))
+        elif op in ("current", "current_control"):
+            motor.send_current(float(payload.get("current", payload.get("current_a", 0.0))))
+            self._continuous[motor_id] = ContinuousCommand(op, dict(payload))
+        elif op in ("relative_pos", "rel_pos"):
+            motor.send_relative_pos(float(payload.get("pos", payload.get("position", 0.0))))
+        elif op in ("return_zero", "return_to_zero"):
+            motor.return_to_zero()
+        elif op in ("trapezoid_pos", "trapezoid_position"):
+            motor.send_trapezoid_pos(
+                float(payload.get("pos", payload.get("position", 0.0))),
+                self._position_type(payload),
+            )
+            self._continuous[motor_id] = ContinuousCommand(op, dict(payload))
+        elif op in ("position_filter", "filter_pos"):
+            motor.send_position_filter(
+                float(payload.get("pos", payload.get("position", 0.0))),
+                self._position_type(payload),
+            )
+            self._continuous[motor_id] = ContinuousCommand(op, dict(payload))
+        elif op in ("set_param", "write_param"):
+            param = self._control_param(payload)
+            motor.set_control_param(param, float(payload.get("value", 0.0)))
+        elif op in ("set_advanced_param", "write_advanced_param"):
+            param = self._advanced_param(payload)
+            motor.set_advanced_param(param, float(payload.get("value", 0.0)))
+        elif op == "set_can_timeout":
+            motor.set_can_timeout(
+                bool(payload.get("enabled", True)),
+                int(payload.get("timeout_ms", 0)),
+                int(payload.get("action_flags", 0)),
+            )
+        elif op == "set_device_address":
+            motor.set_device_address(int(payload.get("device_address", payload.get("address", 0))))
+        elif op == "set_mit_limits":
+            motor.set_mit_limits(
+                MITLimits(
+                    position_max_rad=float(payload.get("position_max_rad", 95.5)),
+                    velocity_max_rad_s=float(payload.get("velocity_max_rad_s", 45.0)),
+                    torque_max_nm=float(payload.get("torque_max_nm", 18.0)),
+                )
+            )
         elif op == "enable":
             motor.enable()
         elif op in ("disable", "stop"):
@@ -172,6 +221,40 @@ class HexmovrBridgeNode(Node):
             motor.send_pos_vel(float(payload.get("pos", 0.0)), float(payload.get("vel", 0.0)))
         elif command.op == "vel":
             motor.send_vel(float(payload.get("vel", 0.0)))
+        elif command.op in ("current", "current_control"):
+            motor.send_current(float(payload.get("current", payload.get("current_a", 0.0))))
+        elif command.op in ("trapezoid_pos", "trapezoid_position"):
+            motor.send_trapezoid_pos(
+                float(payload.get("pos", payload.get("position", 0.0))),
+                self._position_type(payload),
+            )
+        elif command.op in ("position_filter", "filter_pos"):
+            motor.send_position_filter(
+                float(payload.get("pos", payload.get("position", 0.0))),
+                self._position_type(payload),
+            )
+
+    def _position_type(self, payload: dict[str, Any]) -> PositionType:
+        value = str(payload.get("position_type", payload.get("type", "absolute"))).strip().lower()
+        if value in ("relative", "rel", "1"):
+            return PositionType.RELATIVE
+        return PositionType.ABSOLUTE
+
+    def _control_param(self, payload: dict[str, Any]) -> ControlParam:
+        value = payload.get("param", payload.get("name", ""))
+        if isinstance(value, str):
+            key = value.strip().lower()
+            if key in CONTROL_PARAM_NAMES:
+                return CONTROL_PARAM_NAMES[key]
+        return ControlParam(int(value))
+
+    def _advanced_param(self, payload: dict[str, Any]) -> AdvancedParam:
+        value = payload.get("param", payload.get("name", ""))
+        if isinstance(value, str):
+            key = value.strip().lower()
+            if key in ADVANCED_PARAM_NAMES:
+                return ADVANCED_PARAM_NAMES[key]
+        return AdvancedParam(int(value))
 
     def _publish_states(self, controller: Controller) -> None:
         motors = controller.motors()

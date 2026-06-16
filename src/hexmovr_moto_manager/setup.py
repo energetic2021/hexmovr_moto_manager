@@ -14,6 +14,7 @@ setup(
         ('share/' + package_name + '/launch', glob('launch/*.launch.py')),
         ('share/' + package_name + '/rviz', glob('rviz/*.rviz')),
     ],
+    scripts=['scripts/moto_scaner'],
     install_requires=['setuptools', 'hexmovr_bridge'],
     zip_safe=True,
     maintainer='hexmovr02',
@@ -25,9 +26,5 @@ setup(
             'pytest',
         ],
     },
-    entry_points={
-        'console_scripts': [
-            'moto_scaner = hexmovr_moto_manager.moto_scaner:main'
-        ],
-    },
+    entry_points={},
 )

@@ -310,6 +310,10 @@ void HexmovrPanel::buildUi()
   bind_text_key(return_zero_button, "return_to_zero");
   bind_text_key(brake_open_button, "brake_open");
   bind_text_key(brake_close_button, "brake_close");
+  brake_open_button->setEnabled(false);
+  brake_close_button->setEnabled(false);
+  brake_open_button->setToolTip("Brake control is disabled.");
+  brake_close_button->setToolTip("Brake control is disabled.");
   action_layout->addWidget(refresh_motor_button, 0, 0);
   action_layout->addWidget(clear_error_button, 0, 1);
   action_layout->addWidget(set_zero_button, 1, 0);
@@ -436,6 +440,10 @@ void HexmovrPanel::buildUi()
   bind_text_key(batch_free_button, "free_motors");
   bind_text_key(batch_brake_open_button, "brake_open");
   bind_text_key(batch_brake_close_button, "brake_close");
+  batch_brake_open_button->setEnabled(false);
+  batch_brake_close_button->setEnabled(false);
+  batch_brake_open_button->setToolTip("Brake control is disabled.");
+  batch_brake_close_button->setToolTip("Brake control is disabled.");
   batch_action_layout->addWidget(batch_scan_button, 0, 0);
   batch_action_layout->addWidget(batch_refresh_button, 0, 1);
   batch_action_layout->addWidget(batch_clear_button, 1, 0);

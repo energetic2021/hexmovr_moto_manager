@@ -4,38 +4,24 @@ import time
 from dataclasses import dataclass, field
 from typing import Optional
 
+from hexmovr_bridge import protocol as bridge_protocol
+
 from .can_transport import SocketCanTransport
 from .hexmovr_protocol import (
-    ADVANCED_PARAM_NAMES,
-    CONTROL_PARAM_NAMES,
-    AdvancedParam,
-    BrakeCommand,
-    Command,
     MITLimits,
     MotorSnapshot,
     OutboundCommand,
     ParsedReply,
-    PositionType,
-    decode_reply,
-    encode_absolute_position_control,
-    encode_brake_control,
-    encode_current_control,
-    encode_mit_control,
-    encode_position_filter_control,
-    encode_relative_position_control,
-    encode_simple_command,
-    encode_trapezoid_position_control,
-    encode_velocity_control,
-    encode_write_advanced_param,
-    encode_write_can_timeout,
-    encode_write_control_param,
-    encode_write_device_address,
-    encode_write_mit_limits,
 )
 
 
 ControlParamName = str
 AdvancedParamName = str
+
+Command = bridge_protocol.Opcode
+PositionType = bridge_protocol.PositionType
+CONTROL_PARAM_NAMES = bridge_protocol.CONTROL_PARAM_NAMES
+ADVANCED_PARAM_NAMES = bridge_protocol.ADVANCED_PARAM_NAMES
 
 
 @dataclass
@@ -148,11 +134,8 @@ class HexmovrClient:
         )
 
     def read_brake_state(self, motor_id: int, timeout_s: Optional[float] = None) -> Optional[ParsedReply]:
-        return self.send_command(
-            motor_id,
-            encode_brake_control(motor_id, BrakeCommand.READ),
-            timeout_s=timeout_s,
-        )
+        del motor_id, timeout_s
+        return None
 
     def read_control_param(
         self, motor_id: int, param: ControlParamName, timeout_s: Optional[float] = None
@@ -192,7 +175,6 @@ class HexmovrClient:
                 self.read_motor_param,
                 self.read_device_address,
                 self.read_can_timeout,
-                self.read_brake_state,
                 self.read_mit_limits,
                 self.read_mit_state,
             ):
@@ -232,11 +214,8 @@ class HexmovrClient:
     def set_brake(
         self, motor_id: int, closed: bool, timeout_s: Optional[float] = None
     ) -> Optional[ParsedReply]:
-        return self.send_command(
-            motor_id,
-            encode_brake_control(motor_id, BrakeCommand.CLOSE if closed else BrakeCommand.OPEN),
-            timeout_s=timeout_s,
-        )
+        del motor_id, closed, timeout_s
+        return None
 
     def set_current(
         self, motor_id: int, current_a: float, timeout_s: Optional[float] = None
@@ -394,7 +373,7 @@ class HexmovrClient:
         )
         if frame is None:
             return None
-        return decode_reply(motor_id, frame.data, limits=limits)
+        return _decode_reply(motor_id, frame.data, limits=limits)
 
     @staticmethod
     def _matches_reply(reply_can_id: int, reply_data: bytes, command: OutboundCommand) -> bool:
@@ -403,3 +382,224 @@ class HexmovrClient:
         if command.expected_command is None:
             return True
         return reply_data[0] == command.expected_command
+
+
+def _wrap_frame(frame: bridge_protocol.OutboundFrame, expected_command: Optional[int], name: str) -> OutboundCommand:
+    motor_id = (int(frame.arbitration_id) & 0xFF)
+    return OutboundCommand(
+        arbitration_id=frame.arbitration_id,
+        payload=frame.data,
+        expected_reply_id=motor_id,
+        expected_command=expected_command,
+        name=name,
+    )
+
+
+def _command_name(command: int) -> str:
+    try:
+        return bridge_protocol.Opcode(command).name.lower()
+    except ValueError:
+        return f"0x{command:02x}"
+
+
+def encode_simple_command(motor_id: int, command: Command) -> OutboundCommand:
+    return _wrap_frame(
+        bridge_protocol.encode_simple_command(motor_id, command),
+        int(command),
+        _command_name(int(command)),
+    )
+
+
+def encode_current_control(motor_id: int, current_a: float) -> OutboundCommand:
+    return _wrap_frame(
+        bridge_protocol.encode_current_control(motor_id, current_a),
+        int(Command.CURRENT_CONTROL),
+        "current_control",
+    )
+
+
+def encode_velocity_control(motor_id: int, velocity_rad_s: float) -> OutboundCommand:
+    return _wrap_frame(
+        bridge_protocol.encode_velocity_control(motor_id, velocity_rad_s),
+        int(Command.VELOCITY_CONTROL),
+        "velocity_control",
+    )
+
+
+def encode_absolute_position_control(motor_id: int, position_rad: float) -> OutboundCommand:
+    return _wrap_frame(
+        bridge_protocol.encode_absolute_position(motor_id, position_rad),
+        int(Command.ABSOLUTE_POSITION_CONTROL),
+        "absolute_position_control",
+    )
+
+
+def encode_relative_position_control(motor_id: int, position_rad: float) -> OutboundCommand:
+    return _wrap_frame(
+        bridge_protocol.encode_relative_position(motor_id, position_rad),
+        int(Command.RELATIVE_POSITION_CONTROL),
+        "relative_position_control",
+    )
+
+
+def encode_trapezoid_position_control(
+    motor_id: int,
+    position_type: PositionType,
+    position_rad: float,
+) -> OutboundCommand:
+    return _wrap_frame(
+        bridge_protocol.encode_trapezoid_position(motor_id, position_rad, position_type),
+        int(Command.TRAPEZOID_POSITION_CONTROL),
+        "trapezoid_position_control",
+    )
+
+
+def encode_position_filter_control(
+    motor_id: int,
+    position_type: PositionType,
+    position_rad: float,
+) -> OutboundCommand:
+    return _wrap_frame(
+        bridge_protocol.encode_position_filter(motor_id, position_rad, position_type),
+        int(Command.POSITION_FILTER_CONTROL),
+        "position_filter_control",
+    )
+
+
+def encode_mit_control(
+    motor_id: int,
+    position_rad: float,
+    velocity_rad_s: float,
+    stiffness: float,
+    damping: float,
+    torque_nm: float,
+    limits: MITLimits,
+) -> OutboundCommand:
+    bridge_limits = bridge_protocol.MITLimits(
+        position_max_rad=limits.position_max_rad,
+        velocity_max_rad_s=limits.velocity_max_rad_s,
+        torque_max_nm=limits.torque_max_nm,
+    )
+    return _wrap_frame(
+        bridge_protocol.encode_mit_control(
+            motor_id,
+            position_rad,
+            velocity_rad_s,
+            stiffness,
+            damping,
+            torque_nm,
+            bridge_limits,
+        ),
+        int(Command.MIT_STATE),
+        "mit_control",
+    )
+
+
+def encode_write_control_param(motor_id: int, param: bridge_protocol.ControlParam, value: float) -> OutboundCommand:
+    return _wrap_frame(
+        bridge_protocol.encode_write_control_param(motor_id, param, value),
+        int(param),
+        f"write_{param.name.lower()}",
+    )
+
+
+def encode_write_advanced_param(motor_id: int, param: bridge_protocol.AdvancedParam, value: float) -> OutboundCommand:
+    return _wrap_frame(
+        bridge_protocol.encode_write_advanced_param(motor_id, param, value),
+        int(param),
+        f"write_{param.name.lower()}",
+    )
+
+
+def encode_write_can_timeout(
+    motor_id: int,
+    enabled: bool,
+    timeout_ms: int,
+    action_flags: int,
+) -> OutboundCommand:
+    return _wrap_frame(
+        bridge_protocol.encode_write_can_timeout(motor_id, enabled, timeout_ms, action_flags),
+        int(Command.CAN_TIMEOUT),
+        "write_can_timeout",
+    )
+
+
+def encode_write_device_address(motor_id: int, device_address: int) -> OutboundCommand:
+    return _wrap_frame(
+        bridge_protocol.encode_write_device_address(motor_id, device_address),
+        int(Command.DEVICE_ADDRESS),
+        "write_device_address",
+    )
+
+
+def encode_write_mit_limits(motor_id: int, limits: MITLimits) -> OutboundCommand:
+    bridge_limits = bridge_protocol.MITLimits(
+        position_max_rad=limits.position_max_rad,
+        velocity_max_rad_s=limits.velocity_max_rad_s,
+        torque_max_nm=limits.torque_max_nm,
+    )
+    return _wrap_frame(
+        bridge_protocol.encode_write_mit_limits(motor_id, bridge_limits),
+        int(Command.MIT_LIMITS),
+        "write_mit_limits",
+    )
+
+
+def _decode_reply(
+    motor_id: int,
+    data: bytes,
+    limits: Optional[MITLimits] = None,
+) -> Optional[ParsedReply]:
+    bridge_limits = None
+    if limits is not None:
+        bridge_limits = bridge_protocol.MITLimits(
+            position_max_rad=limits.position_max_rad,
+            velocity_max_rad_s=limits.velocity_max_rad_s,
+            torque_max_nm=limits.torque_max_nm,
+        )
+    update = bridge_protocol.decode_reply(data, can_id=motor_id, limits=bridge_limits)
+    if update is None:
+        return None
+
+    command = int(getattr(update, "opcode", data[0]))
+    fields: dict[str, object]
+    if isinstance(update, bridge_protocol.StatusUpdate):
+        fields = {
+            "bus_voltage_v": update.bus_voltage,
+            "bus_current_a": update.bus_current,
+            "temperature_c": int(update.temp),
+            "run_mode": update.run_mode,
+            "fault_code": update.status_code,
+        }
+    elif isinstance(update, bridge_protocol.FastStateUpdate):
+        fields = {
+            "temperature_c": int(update.temp),
+            "q_current_a": update.q_current,
+            "velocity_rad_s": update.vel,
+            "position_rad": update.pos,
+        }
+    elif isinstance(update, bridge_protocol.CurrentUpdate):
+        fields = {"q_current_a": update.q_current}
+    elif isinstance(update, bridge_protocol.VelocityUpdate):
+        fields = {"velocity_rad_s": update.vel}
+    elif isinstance(update, bridge_protocol.PositionUpdate):
+        fields = {"position_rad": update.pos}
+    elif isinstance(update, bridge_protocol.MitStateUpdate):
+        fields = {
+            "position_rad": update.pos,
+            "velocity_rad_s": update.vel,
+            "torque_nm": update.torq,
+            "in_mit_mode": update.in_mit_mode,
+            "fault_code": update.status_code,
+        }
+    elif isinstance(update, bridge_protocol.FieldsUpdate):
+        fields = dict(update.fields)
+    else:
+        return None
+
+    return ParsedReply(
+        motor_id=motor_id,
+        command=command,
+        command_name=_command_name(command),
+        fields=fields,
+    )

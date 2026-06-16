@@ -43,6 +43,7 @@ def generate_launch_description() -> LaunchDescription:
             DeclareLaunchArgument("frame_id", default_value="map"),
             DeclareLaunchArgument("scan_start_id", default_value="1"),
             DeclareLaunchArgument("scan_end_id", default_value="12"),
+            DeclareLaunchArgument("show_labels", default_value="false"),
             DeclareLaunchArgument("open_rviz", default_value="true"),
             Node(
                 package="hexmovr_moto_manager",
@@ -55,6 +56,7 @@ def generate_launch_description() -> LaunchDescription:
                         "frame_id": LaunchConfiguration("frame_id"),
                         "scan_start_id": LaunchConfiguration("scan_start_id"),
                         "scan_end_id": LaunchConfiguration("scan_end_id"),
+                        "show_labels": LaunchConfiguration("show_labels"),
                     }
                 ],
             ),

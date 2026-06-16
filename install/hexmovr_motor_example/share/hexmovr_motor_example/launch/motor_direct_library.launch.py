@@ -1,0 +1,1 @@
+/home/hexmovr02/hexmovr_manager/build/hexmovr_motor_example/launch/motor_direct_library.launch.py

@@ -1,0 +1,4 @@
+Invoking command in '/home/hexmovr02/hexmovr_manager/build/hexmovr_moto_panel': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/hexmovr02/hexmovr_manager/build/hexmovr_moto_panel -- -j32 -l32
+Invoked command in '/home/hexmovr02/hexmovr_manager/build/hexmovr_moto_panel' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/hexmovr02/hexmovr_manager/build/hexmovr_moto_panel -- -j32 -l32
+Invoking command in '/home/hexmovr02/hexmovr_manager/build/hexmovr_moto_panel': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /home/hexmovr02/hexmovr_manager/build/hexmovr_moto_panel
+Invoked command in '/home/hexmovr02/hexmovr_manager/build/hexmovr_moto_panel' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /home/hexmovr02/hexmovr_manager/build/hexmovr_moto_panel

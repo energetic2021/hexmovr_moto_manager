@@ -25,6 +25,8 @@ from .can_transport import SocketCanError
 from .hexmovr_client import HexmovrClient
 from .hexmovr_protocol import MITLimits, MotorSnapshot, PositionType
 
+MOTOR_MESH_RESOURCE = "package://hexmovr_moto_panel/meshes/moto.STL"
+
 
 @dataclass
 class ManagedMotorView:
@@ -54,6 +56,7 @@ class HexmovrMotoManagerNode(Node):
         self.declare_parameter("deep_refresh_on_scan", True)
         self.declare_parameter("motor_spacing_m", 0.22)
         self.declare_parameter("use_interactive_markers", True)
+        self.declare_parameter("show_labels", False)
         self.declare_parameter("jog_step_rad", 0.25)
         self.declare_parameter("velocity_step_rad_s", 1.0)
         self.declare_parameter("retry_connect_period_s", 2.0)
@@ -69,6 +72,7 @@ class HexmovrMotoManagerNode(Node):
         self._use_interactive_markers = bool(
             self.get_parameter("use_interactive_markers").value
         )
+        self._show_labels = bool(self.get_parameter("show_labels").value)
         self._jog_step_rad = float(self.get_parameter("jog_step_rad").value)
         self._velocity_step_rad_s = float(self.get_parameter("velocity_step_rad_s").value)
         self._retry_connect_period_s = float(
@@ -132,8 +136,14 @@ class HexmovrMotoManagerNode(Node):
 
     def destroy_node(self) -> bool:
         if self._marker_server is not None:
-            self._marker_server.clear()
-            self._marker_server.applyChanges()
+            try:
+                self._marker_server.clear()
+                if rclpy.ok():
+                    self._marker_server.applyChanges()
+            except Exception as exc:
+                self.get_logger().debug(
+                    f"Skipped interactive marker cleanup during shutdown: {exc}"
+                )
         if self._client is not None:
             self._client.close()
         return super().destroy_node()
@@ -424,25 +434,23 @@ class HexmovrMotoManagerNode(Node):
 
         for motor_id, view in sorted(self._motors.items()):
             x = view.layout_index * self._motor_spacing_m
-            color = self._state_color(view, current_time)
 
             body = Marker()
             body.header.frame_id = self._workspace_frame
             body.header.stamp = now
             body.ns = "hexmovr_body"
             body.id = motor_id
-            body.type = Marker.CYLINDER
+            body.type = Marker.MESH_RESOURCE
             body.action = Marker.ADD
+            body.mesh_resource = MOTOR_MESH_RESOURCE
+            body.mesh_use_embedded_materials = True
             body.pose.position.x = x
             body.pose.position.y = 0.0
-            body.pose.position.z = 0.03
-            body.scale.x = 0.08
-            body.scale.y = 0.08
-            body.scale.z = 0.06
-            body.color.r = color[0]
-            body.color.g = color[1]
-            body.color.b = color[2]
-            body.color.a = 0.95
+            body.pose.position.z = 0.0
+            body.scale.x = 1.0
+            body.scale.y = 1.0
+            body.scale.z = 1.0
+            self._apply_motor_mesh_style(body, view, current_time)
             marker_array.markers.append(body)
 
             arrow = Marker()
@@ -452,35 +460,36 @@ class HexmovrMotoManagerNode(Node):
             arrow.id = 1000 + motor_id
             arrow.type = Marker.ARROW
             arrow.action = Marker.ADD
-            arrow.scale.x = 0.06
-            arrow.scale.y = 0.008
-            arrow.scale.z = 0.012
-            start = Point(x=x, y=0.0, z=0.065)
+            arrow.scale.x = 0.003
+            arrow.scale.y = 0.010
+            arrow.scale.z = 0.018
+            start = Point(x=x, y=0.0, z=0.070)
             direction = self._arrow_tip(x, view.snapshot.position_rad)
             arrow.points = [start, direction]
-            arrow.color.r = 0.10
-            arrow.color.g = 0.10
-            arrow.color.b = 0.10
+            arrow.color.r = 0.90
+            arrow.color.g = 0.05
+            arrow.color.b = 0.04
             arrow.color.a = 0.95
             marker_array.markers.append(arrow)
 
-            text = Marker()
-            text.header.frame_id = self._workspace_frame
-            text.header.stamp = now
-            text.ns = "hexmovr_label"
-            text.id = 2000 + motor_id
-            text.type = Marker.TEXT_VIEW_FACING
-            text.action = Marker.ADD
-            text.pose.position.x = x
-            text.pose.position.y = 0.0
-            text.pose.position.z = 0.18
-            text.scale.z = 0.05
-            text.color.r = 0.1
-            text.color.g = 0.1
-            text.color.b = 0.1
-            text.color.a = 1.0
-            text.text = self._label_text(view, current_time)
-            marker_array.markers.append(text)
+            if self._show_labels:
+                text = Marker()
+                text.header.frame_id = self._workspace_frame
+                text.header.stamp = now
+                text.ns = "hexmovr_label"
+                text.id = 2000 + motor_id
+                text.type = Marker.TEXT_VIEW_FACING
+                text.action = Marker.ADD
+                text.pose.position.x = x
+                text.pose.position.y = 0.0
+                text.pose.position.z = 0.16
+                text.scale.z = 0.035
+                text.color.r = 0.1
+                text.color.g = 0.1
+                text.color.b = 0.1
+                text.color.a = 1.0
+                text.text = self._label_text(view, current_time)
+                marker_array.markers.append(text)
 
         self._marker_pub.publish(marker_array)
         self._publish_diagnostics(current_time)
@@ -592,22 +601,20 @@ class HexmovrMotoManagerNode(Node):
         marker.description = f"Motor {view.motor_id}"
         marker.scale = 0.18
         marker.pose.position.x = view.layout_index * self._motor_spacing_m
-        marker.pose.position.z = 0.08
+        marker.pose.position.z = 0.0
 
         control = InteractiveMarkerControl()
         control.interaction_mode = InteractiveMarkerControl.BUTTON
         control.always_visible = True
 
         body = Marker()
-        body.type = Marker.SPHERE
-        body.scale.x = 0.10
-        body.scale.y = 0.10
-        body.scale.z = 0.10
-        color = self._state_color(view, time.time())
-        body.color.r = color[0]
-        body.color.g = color[1]
-        body.color.b = color[2]
-        body.color.a = 0.85
+        body.type = Marker.MESH_RESOURCE
+        body.mesh_resource = MOTOR_MESH_RESOURCE
+        body.mesh_use_embedded_materials = True
+        body.scale.x = 1.0
+        body.scale.y = 1.0
+        body.scale.z = 1.0
+        self._apply_motor_mesh_style(body, view, time.time())
         control.markers.append(body)
         marker.controls.append(control)
 
@@ -620,8 +627,6 @@ class HexmovrMotoManagerNode(Node):
         action_map[handler.insert("Set Zero")] = "set_zero"
         action_map[handler.insert("Return To Zero")] = "return_to_zero"
         action_map[handler.insert("Free Motor")] = "free_motor"
-        action_map[handler.insert("Brake Open")] = "brake_open"
-        action_map[handler.insert("Brake Close")] = "brake_close"
         action_map[handler.insert(f"Jog +{self._jog_step_rad:.2f} rad")] = "jog_positive"
         action_map[handler.insert(f"Jog -{self._jog_step_rad:.2f} rad")] = "jog_negative"
         action_map[handler.insert(f"Spin +{self._velocity_step_rad_s:.2f} rad/s")] = "vel_positive"
@@ -673,12 +678,6 @@ class HexmovrMotoManagerNode(Node):
                 self._refresh_motor(motor_id, deep=False)
             elif action == "free_motor":
                 self._require_client().free_motor(motor_id)
-                self._refresh_motor(motor_id, deep=False)
-            elif action == "brake_open":
-                self._require_client().set_brake(motor_id, closed=False)
-                self._refresh_motor(motor_id, deep=False)
-            elif action == "brake_close":
-                self._require_client().set_brake(motor_id, closed=True)
                 self._refresh_motor(motor_id, deep=False)
             elif action == "jog_positive":
                 self._require_client().set_relative_position(motor_id, self._jog_step_rad)
@@ -773,10 +772,7 @@ class HexmovrMotoManagerNode(Node):
             self._refresh_motor(motor_id, deep=False)
             return {"op": op, "motor_id": motor_id}
         if op == "brake":
-            closed = bool(payload.get("closed", True))
-            self._require_client().set_brake(motor_id, closed=closed)
-            self._refresh_motor(motor_id, deep=False)
-            return {"op": op, "motor_id": motor_id, "closed": closed}
+            raise ValueError("brake control is disabled because the brake hardware is not available")
         if op == "control":
             mode = str(payload.get("mode", "absolute_position")).lower()
             return self._execute_control_command(motor_id, mode, payload)
@@ -950,6 +946,33 @@ class HexmovrMotoManagerNode(Node):
             return (0.90, 0.66, 0.18)
         return (0.18, 0.68, 0.33)
 
+    def _apply_motor_mesh_style(
+        self,
+        marker: Marker,
+        view: ManagedMotorView,
+        current_time: float,
+    ) -> None:
+        if view.last_error or view.snapshot.fault_code:
+            marker.mesh_use_embedded_materials = False
+            marker.color.r = 0.85
+            marker.color.g = 0.05
+            marker.color.b = 0.04
+            marker.color.a = 1.0
+            return
+        if view.is_stale(current_time, self._stale_timeout_s):
+            marker.mesh_use_embedded_materials = False
+            marker.color.r = 1.0
+            marker.color.g = 0.72
+            marker.color.b = 0.08
+            marker.color.a = 1.0
+            return
+
+        marker.mesh_use_embedded_materials = True
+        marker.color.r = 1.0
+        marker.color.g = 1.0
+        marker.color.b = 1.0
+        marker.color.a = 1.0
+
     def _label_text(self, view: ManagedMotorView, current_time: float) -> str:
         age = max(current_time - view.last_seen, 0.0)
         return (
@@ -959,12 +982,12 @@ class HexmovrMotoManagerNode(Node):
         )
 
     def _arrow_tip(self, x: float, position_rad: float) -> Point:
-        length = 0.045
+        length = 0.055
         clamped = max(min(position_rad, math.pi), -math.pi)
         return Point(
             x=x + math.cos(clamped) * length,
             y=math.sin(clamped) * length,
-            z=0.065,
+            z=0.070,
         )
 
 
@@ -973,9 +996,14 @@ def main(args: Optional[list[str]] = None) -> None:
     node = HexmovrMotoManagerNode()
     try:
         rclpy.spin(node)
+    except KeyboardInterrupt:
+        node.get_logger().info("收到 Ctrl+C，准备退出。")
     finally:
-        node.destroy_node()
-        rclpy.shutdown()
+        try:
+            node.destroy_node()
+        finally:
+            if rclpy.ok():
+                rclpy.shutdown()
 
 
 if __name__ == "__main__":

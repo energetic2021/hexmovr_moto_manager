@@ -1,0 +1,7 @@
+#!/usr/bin/python3
+
+from hexmovr_moto_manager.moto_scaner import main
+
+
+if __name__ == "__main__":
+    main()
