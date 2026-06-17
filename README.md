@@ -8,6 +8,7 @@
 - `hexmovr_moto_manager`：上层 ROS2 manager，负责扫描、刷新、聚合状态、诊断、RViz marker 和 panel 接口。
 - `hexmovr_moto_panel`：RViz Panel 插件。
 - `hexmovr_motor_example`：示例功能包，演示两种使用方式。
+- `hexmovr_ros2_control`：未来 ros2_control 适配的设计骨架包，目前只提供文档和示例配置。
 
 ## 架构关系
 
@@ -91,6 +92,90 @@ source install/setup.bash
 colcon build --packages-select hexmovr_motor_example --symlink-install
 source install/setup.bash
 ```
+
+## 电机 YAML 配置
+
+可以用一份 YAML 描述 CAN 接口和电机列表。这个配置是电机级配置，只描述 `motor_id`、名称、默认限幅等信息，不包含机器人 joint/URDF 映射。
+
+示例文件安装在：
+
+```text
+src/hexmovr_bridge/config/hexmovr_motors.example.yaml
+```
+
+示例内容：
+
+```yaml
+channel: can0
+
+control_period_s: 0.02
+state_period_s: 0.05
+feedback_period_s: 0.10
+
+defaults:
+  model: hexmovr
+  enabled: true
+  max_velocity_rad_s: 3.0
+  max_current_a: 2.0
+  max_torque_nm: 1.0
+  feedback_period_s: 0.10
+  mit_limits:
+    position_max_rad: 95.5
+    velocity_max_rad_s: 45.0
+    torque_max_nm: 18.0
+
+motors:
+  - id: 1
+    name: motor_1
+
+  - id: 2
+    name: motor_2
+    enabled: false
+```
+
+字段说明：
+
+| 字段 | 位置 | 说明 |
+| --- | --- | --- |
+| `channel` / `can_interface` | 顶层 | SocketCAN 接口，例如 `can0`。 |
+| `control_period_s` | 顶层 | bridge 节点控制 tick 周期。 |
+| `state_period_s` | 顶层 | bridge 节点状态发布周期。 |
+| `feedback_period_s` | 顶层或单电机 | 反馈请求周期；单电机字段主要用于后续安全/调度扩展。 |
+| `defaults` | 顶层 | 所有电机的默认字段，会被单个电机配置覆盖。 |
+| `motors[].id` | 单电机 | 电机 ID，范围 `1..254`。 |
+| `motors[].fb_id` | 单电机 | 反馈 ID；当前要求为 `0` 或等于 `id`。 |
+| `motors[].name` | 单电机 | 便于人读的电机名称。 |
+| `motors[].model` | 单电机 | 电机型号标签。 |
+| `motors[].enabled` | 单电机 | 是否启用该电机。 |
+| `motors[].default_mode` | 单电机 | 默认控制模式标签，当前只作为配置记录。 |
+| `motors[].max_velocity_rad_s` | 单电机 | 建议最大速度，供后续安全限幅使用。 |
+| `motors[].max_current_a` | 单电机 | 建议最大电流，供后续安全限幅使用。 |
+| `motors[].max_torque_nm` | 单电机 | 建议最大力矩，供后续安全限幅使用。 |
+| `motors[].mit_limits` | 单电机 | MIT 编解码限幅。加载 YAML 时只更新本地解码/编码限幅，不会自动写入电机参数。 |
+
+manager 使用 YAML：
+
+```bash
+ros2 launch hexmovr_moto_manager hexmovr_manager_headless.launch.py \
+  motor_config_file:=package://hexmovr_bridge/config/hexmovr_motors.example.yaml
+```
+
+direct library 示例使用 YAML：
+
+```bash
+ros2 launch hexmovr_motor_example motor_direct_library.launch.py \
+  config_file:=package://hexmovr_bridge/config/hexmovr_motors.example.yaml \
+  motor_id:=1 demo_enabled:=true demo_mode:=velocity velocity_rad_s:=0.5
+```
+
+独立 `hexmovr_bridge` 节点使用 YAML：
+
+```bash
+ros2 run hexmovr_bridge hexmovr_bridge --ros-args \
+  -p config_file:=package://hexmovr_bridge/config/hexmovr_motors.example.yaml
+```
+
+也可以使用绝对路径，例如 `/home/hexmovr02/hexmovr_manager/src/hexmovr_bridge/config/hexmovr_motors.example.yaml`。
 
 ## 启动 Manager
 
@@ -537,6 +622,53 @@ ros2 topic echo /hexmovr/event
 
 注意：`/hexmovr/state` 的 JSON 结构和 `/hexmovr_moto_manager/state` 不同，不能直接替代 panel 所需状态。
 
+## Python SDK 文档
+
+更正式的 direct library 文档见：
+
+```text
+src/hexmovr_bridge/docs/python_sdk.md
+```
+
+里面包含：
+
+- `Controller` / `HexmovrMotor` 使用方式
+- YAML 配置加载
+- 常用控制 API
+- 参数写入 API
+- 状态读取
+- 连续控制建议
+- 错误处理和关闭流程
+
+安装后也会位于：
+
+```text
+install/hexmovr_bridge/share/hexmovr_bridge/docs/python_sdk.md
+```
+
+## ros2_control 骨架
+
+`hexmovr_ros2_control` 当前是设计骨架，不是可加载的硬件插件。
+
+当前包含：
+
+- `src/hexmovr_ros2_control/README.md`
+- `src/hexmovr_ros2_control/doc/design.md`
+- `src/hexmovr_ros2_control/config/example.ros2_control.yaml`
+- `include/hexmovr_ros2_control/hexmovr_system.hpp.todo`
+- `src/hexmovr_system.cpp.todo`
+
+它记录未来接 `ros2_control` 时需要的：
+
+- joint 到 motor ID 的映射形状
+- 单位转换公式
+- command/state interface 设计
+- lifecycle 行为
+- 安全策略
+- 后续实现路线
+
+当前阶段不要把它当成 controller_manager 可加载插件使用。
+
 ## 测试
 
 bridge 协议测试：
@@ -561,6 +693,6 @@ PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 \
 
 ```bash
 colcon build --packages-select \
-  hexmovr_bridge hexmovr_moto_manager hexmovr_moto_panel hexmovr_motor_example \
+  hexmovr_bridge hexmovr_moto_manager hexmovr_moto_panel hexmovr_motor_example hexmovr_ros2_control \
   --symlink-install
 ```
