@@ -1,0 +1,13 @@
+// TODO:
+// This is a design placeholder for a future ros2_control hardware plugin.
+// Keep it out of CMake targets until the implementation is real.
+//
+// Expected implementation outline:
+//
+// 1. Parse hardware info and joint parameters.
+// 2. Create a Hexmovr controller for the configured CAN channel.
+// 3. Add all configured motors.
+// 4. In read(), copy motor.latest_state() into joint state arrays.
+// 5. In write(), validate and clamp joint commands.
+// 6. Convert joint commands to motor commands.
+// 7. Stop or free motors during deactivate/cleanup according to config.

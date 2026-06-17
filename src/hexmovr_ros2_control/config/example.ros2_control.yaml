@@ -1,0 +1,46 @@
+# Example only. This file is not loaded by the current project.
+# A future hexmovr_ros2_control hardware plugin can use this shape.
+
+controller_manager:
+  ros__parameters:
+    update_rate: 100
+
+    joint_state_broadcaster:
+      type: joint_state_broadcaster/JointStateBroadcaster
+
+    forward_velocity_controller:
+      type: velocity_controllers/JointGroupVelocityController
+
+joint_state_broadcaster:
+  ros__parameters: {}
+
+forward_velocity_controller:
+  ros__parameters:
+    joints:
+      - joint_1
+
+hexmovr_ros2_control:
+  ros__parameters:
+    channel: can0
+    command_timeout_s: 0.2
+    feedback_timeout_s: 0.5
+    stop_on_deactivate: true
+    free_on_deactivate: true
+    clear_error_on_activate: false
+
+    joints:
+      - name: joint_1
+        motor_id: 1
+        command_interface: velocity
+        hexmovr_mode: velocity
+        direction: 1.0
+        reduction: 1.0
+        offset_rad: 0.0
+        min_position_rad: -3.14
+        max_position_rad: 3.14
+        max_velocity_rad_s: 1.0
+        max_current_a: 2.0
+        mit_limits:
+          position_max_rad: 95.5
+          velocity_max_rad_s: 45.0
+          torque_max_nm: 18.0
