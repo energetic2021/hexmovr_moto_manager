@@ -1,3 +1,5 @@
+from glob import glob
+
 from setuptools import find_packages, setup
 
 package_name = "hexmovr_bridge"
@@ -9,8 +11,10 @@ setup(
     data_files=[
         ("share/ament_index/resource_index/packages", ["resource/" + package_name]),
         ("share/" + package_name, ["package.xml"]),
+        ("share/" + package_name + "/config", glob("config/*.yaml")),
+        ("share/" + package_name + "/docs", glob("docs/*.md")),
     ],
-    install_requires=["setuptools", "python-can"],
+    install_requires=["setuptools", "python-can", "PyYAML"],
     zip_safe=True,
     maintainer="hexmovr02",
     maintainer_email="energetic2021@gmail.com",

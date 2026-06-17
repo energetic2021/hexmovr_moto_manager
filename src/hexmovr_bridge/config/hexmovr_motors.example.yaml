@@ -1,0 +1,25 @@
+channel: can0
+
+control_period_s: 0.02
+state_period_s: 0.05
+feedback_period_s: 0.10
+
+defaults:
+  model: hexmovr
+  enabled: true
+  max_velocity_rad_s: 3.0
+  max_current_a: 2.0
+  max_torque_nm: 1.0
+  feedback_period_s: 0.10
+  mit_limits:
+    position_max_rad: 95.5
+    velocity_max_rad_s: 45.0
+    torque_max_nm: 18.0
+
+motors:
+  - id: 1
+    name: motor_1
+
+  - id: 6
+    name: motor_6
+    enabled: false

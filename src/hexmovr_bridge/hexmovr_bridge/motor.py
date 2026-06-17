@@ -139,6 +139,10 @@ class HexmovrMotor:
         self._mit_limits = limits
         self._send_encoded(encode_write_mit_limits(self.id, limits))
 
+    def configure_mit_limits(self, limits: MITLimits) -> None:
+        """Update local MIT encode/decode limits without writing motor parameters."""
+        self._mit_limits = limits
+
     def request_feedback(self, opcode: int = int(Opcode.READ_FAST_STATE)) -> None:
         self._send_encoded(encode_simple_command(self.id, opcode))
 

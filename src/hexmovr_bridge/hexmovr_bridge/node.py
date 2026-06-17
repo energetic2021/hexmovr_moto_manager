@@ -9,6 +9,7 @@ import rclpy
 from rclpy.node import Node
 from std_msgs.msg import String
 
+from .config import HexmovrConfig, MotorConfig, load_hexmovr_config
 from .controller import Controller
 from .protocol import (
     ADVANCED_PARAM_NAMES,
@@ -29,6 +30,7 @@ class ContinuousCommand:
 class HexmovrBridgeNode(Node):
     def __init__(self) -> None:
         super().__init__("hexmovr_bridge")
+        self.declare_parameter("config_file", "")
         self.declare_parameter("channel", "can0")
         self.declare_parameter("motor_ids", [1])
         self.declare_parameter("model", "")
@@ -36,16 +38,26 @@ class HexmovrBridgeNode(Node):
         self.declare_parameter("state_period_s", 0.05)
         self.declare_parameter("feedback_period_s", 0.1)
 
-        self._channel = str(self.get_parameter("channel").value)
-        self._model = str(self.get_parameter("model").value)
-        self._control_period_s = max(float(self.get_parameter("control_period_s").value), 0.001)
-        self._state_period_s = max(float(self.get_parameter("state_period_s").value), 0.001)
-        self._feedback_period_s = max(float(self.get_parameter("feedback_period_s").value), 0.001)
-
         self._controller: Optional[Controller] = None
         self._continuous: dict[int, ContinuousCommand] = {}
         self._last_state_publish_s = 0.0
         self._last_feedback_request_s = 0.0
+
+        self._config = self._load_config()
+        self._channel = self._config.channel if self._config else str(self.get_parameter("channel").value)
+        self._model = str(self.get_parameter("model").value)
+        self._control_period_s = self._period_from_config(
+            "control_period_s",
+            self._config.control_period_s if self._config else None,
+        )
+        self._state_period_s = self._period_from_config(
+            "state_period_s",
+            self._config.state_period_s if self._config else None,
+        )
+        self._feedback_period_s = self._period_from_config(
+            "feedback_period_s",
+            self._config.feedback_period_s if self._config else None,
+        )
 
         self._cmd_sub = self.create_subscription(String, "/hexmovr/cmd", self._on_cmd, 10)
         self._state_pub = self.create_publisher(String, "/hexmovr/state", 10)
@@ -54,12 +66,39 @@ class HexmovrBridgeNode(Node):
 
         try:
             self._controller = Controller(self._channel)
-            for motor_id in self._configured_motor_ids():
-                self._controller.add_motor(motor_id, model=self._model)
-            self._emit_event("bridge_started", {"channel": self._channel})
+            for motor_config in self._configured_motors():
+                motor = self._controller.add_motor(
+                    motor_config.id,
+                    fb_id=motor_config.fb_id,
+                    model=motor_config.model or self._model,
+                )
+                motor.configure_mit_limits(motor_config.mit_limits)
+            self._emit_event(
+                "bridge_started",
+                {
+                    "channel": self._channel,
+                    "motor_ids": [motor.id for motor in self._controller.motors()],
+                    "config_file": str(self.get_parameter("config_file").value),
+                },
+            )
         except Exception as exc:
             self._emit_event("error", {"where": "start", "message": str(exc)})
             self.get_logger().error(f"Failed to start Hexmovr bridge: {exc}")
+
+    def _load_config(self) -> Optional[HexmovrConfig]:
+        config_file = str(self.get_parameter("config_file").value).strip()
+        if not config_file:
+            return None
+        config = load_hexmovr_config(config_file)
+        self.get_logger().info(
+            f"Loaded Hexmovr config from {config_file}: "
+            f"channel={config.channel}, motors={config.motor_ids}"
+        )
+        return config
+
+    def _period_from_config(self, parameter_name: str, configured: Optional[float]) -> float:
+        value = configured if configured is not None else float(self.get_parameter(parameter_name).value)
+        return max(float(value), 0.001)
 
     def destroy_node(self) -> bool:
         self._shutdown_controller()
@@ -75,6 +114,15 @@ class HexmovrBridgeNode(Node):
         if isinstance(value, str):
             return [int(item.strip()) for item in value.split(",") if item.strip()]
         return [int(value)]
+
+    def _configured_motors(self):
+        if self._config is not None and self._config.motors:
+            return [motor for motor in self._config.motors if motor.enabled]
+
+        return [
+            MotorConfig(id=motor_id, model=self._model)
+            for motor_id in self._configured_motor_ids()
+        ]
 
     def _shutdown_controller(self) -> None:
         controller = self._controller
@@ -298,6 +346,14 @@ def main(args: Optional[list[str]] = None) -> None:
     node = HexmovrBridgeNode()
     try:
         rclpy.spin(node)
+    except KeyboardInterrupt:
+        node.get_logger().info("收到 Ctrl+C，准备退出。")
     finally:
-        node.destroy_node()
-        rclpy.shutdown()
+        try:
+            node.destroy_node()
+        finally:
+            if rclpy.ok():
+                try:
+                    rclpy.shutdown()
+                except Exception:
+                    pass
