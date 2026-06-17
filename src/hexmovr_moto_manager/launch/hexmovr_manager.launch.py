@@ -40,6 +40,7 @@ def generate_launch_description() -> LaunchDescription:
     return LaunchDescription(
         [
             DeclareLaunchArgument("can_interface", default_value="can0"),
+            DeclareLaunchArgument("motor_config_file", default_value=""),
             DeclareLaunchArgument("frame_id", default_value="map"),
             DeclareLaunchArgument("scan_start_id", default_value="1"),
             DeclareLaunchArgument("scan_end_id", default_value="12"),
@@ -53,6 +54,7 @@ def generate_launch_description() -> LaunchDescription:
                 parameters=[
                     {
                         "can_interface": LaunchConfiguration("can_interface"),
+                        "motor_config_file": LaunchConfiguration("motor_config_file"),
                         "frame_id": LaunchConfiguration("frame_id"),
                         "scan_start_id": LaunchConfiguration("scan_start_id"),
                         "scan_end_id": LaunchConfiguration("scan_end_id"),

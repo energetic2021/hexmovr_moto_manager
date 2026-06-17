@@ -7,6 +7,7 @@ from typing import Any, Optional
 import rclpy
 from diagnostic_msgs.msg import DiagnosticArray, DiagnosticStatus, KeyValue
 from geometry_msgs.msg import Point, TransformStamped
+from hexmovr_bridge.config import HexmovrConfig, load_hexmovr_config
 from interactive_markers.interactive_marker_server import InteractiveMarkerServer
 from interactive_markers.menu_handler import MenuHandler
 from rclpy.node import Node
@@ -44,6 +45,7 @@ class ManagedMotorView:
 class HexmovrMotoManagerNode(Node):
     def __init__(self) -> None:
         super().__init__("hexmovr_moto_manager")
+        self.declare_parameter("motor_config_file", "")
         self.declare_parameter("can_interface", "can0")
         self.declare_parameter("frame_id", "map")
         self.declare_parameter("scan_start_id", 1)
@@ -61,7 +63,12 @@ class HexmovrMotoManagerNode(Node):
         self.declare_parameter("velocity_step_rad_s", 1.0)
         self.declare_parameter("retry_connect_period_s", 2.0)
 
-        interface = str(self.get_parameter("can_interface").value)
+        self._motor_config = self._load_motor_config()
+        interface = (
+            self._motor_config.channel
+            if self._motor_config is not None
+            else str(self.get_parameter("can_interface").value)
+        )
         timeout_s = float(self.get_parameter("request_timeout_s").value)
         self._frame_id = str(self.get_parameter("frame_id").value)
         self._poll_period_s = float(self.get_parameter("poll_period_s").value)
@@ -90,6 +97,7 @@ class HexmovrMotoManagerNode(Node):
         self._fault_history: list[dict[str, Any]] = []
         self._fault_history_limit = 500
         self._tf_broadcaster = StaticTransformBroadcaster(self)
+        self._seed_configured_motors()
 
         self._command_sub = self.create_subscription(
             String,
@@ -133,6 +141,34 @@ class HexmovrMotoManagerNode(Node):
                 "poll_period_s": self._poll_period_s,
             },
         )
+
+    def _load_motor_config(self) -> Optional[HexmovrConfig]:
+        config_file = str(self.get_parameter("motor_config_file").value).strip()
+        if not config_file:
+            return None
+        config = load_hexmovr_config(config_file)
+        self.get_logger().info(
+            f"Loaded Hexmovr motor config from {config_file}: "
+            f"channel={config.channel}, motors={config.motor_ids}"
+        )
+        return config
+
+    def _seed_configured_motors(self) -> None:
+        if self._motor_config is None:
+            return
+        for layout_index, motor_config in enumerate(
+            motor for motor in self._motor_config.motors if motor.enabled
+        ):
+            self._motors[motor_config.id] = ManagedMotorView(
+                motor_id=motor_config.id,
+                snapshot=MotorSnapshot(motor_id=motor_config.id),
+                layout_index=layout_index,
+                mit_limits=MITLimits(
+                    position_max_rad=motor_config.mit_limits.position_max_rad,
+                    velocity_max_rad_s=motor_config.mit_limits.velocity_max_rad_s,
+                    torque_max_nm=motor_config.mit_limits.torque_max_nm,
+                ),
+            )
 
     def destroy_node(self) -> bool:
         if self._marker_server is not None:
