@@ -28,7 +28,7 @@ class CanFrame:
 class CanBus:
     """Tiny python-can wrapper for Linux SocketCAN."""
 
-    def __init__(self, channel: str) -> None:
+    def __init__(self, channel: str, send_timeout_s: float = 0.05) -> None:
         try:
             import can
         except ImportError as exc:
@@ -40,7 +40,9 @@ class CanBus:
         except TypeError:
             self._bus = can.interface.Bus(bustype="socketcan", channel=channel)
         self._channel = channel
-        self._lock = RLock()
+        self._send_timeout_s = max(float(send_timeout_s), 0.0)
+        self._tx_lock = RLock()
+        self._rx_lock = RLock()
 
     @property
     def channel(self) -> str:
@@ -55,11 +57,11 @@ class CanBus:
             data=payload,
             is_extended_id=False,
         )
-        with self._lock:
-            self._bus.send(message)
+        with self._tx_lock:
+            self._bus.send(message, timeout=self._send_timeout_s)
 
     def recv(self, timeout: float) -> Optional[CanFrame]:
-        with self._lock:
+        with self._rx_lock:
             message = self._bus.recv(timeout=max(float(timeout), 0.0))
         if message is None:
             return None
@@ -106,7 +108,8 @@ class CanBus:
                 return frame
 
     def shutdown(self) -> None:
-        with self._lock:
-            shutdown = getattr(self._bus, "shutdown", None)
-            if shutdown is not None:
-                shutdown()
+        with self._tx_lock:
+            with self._rx_lock:
+                shutdown = getattr(self._bus, "shutdown", None)
+                if shutdown is not None:
+                    shutdown()

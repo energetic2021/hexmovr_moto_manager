@@ -4,6 +4,7 @@ from typing import Optional
 import rclpy
 from rclpy.node import Node
 
+from hexmovr_bridge.config import HexmovrConfig, load_hexmovr_config
 from hexmovr_bridge.controller import Controller
 from hexmovr_bridge.protocol import AdvancedParam, ControlParam, MITLimits, Opcode, PositionType
 
@@ -27,6 +28,7 @@ class MotorDirectLibraryNode(Node):
         super().__init__("motor_direct_library_node")
 
         # 默认控制 1 号电机，默认使用 can0。
+        self.declare_parameter("config_file", "")
         self.declare_parameter("channel", "can0")
         self.declare_parameter("motor_id", 1)
 
@@ -42,6 +44,7 @@ class MotorDirectLibraryNode(Node):
         self.declare_parameter("kd", 0.5)
         self.declare_parameter("torque_nm", 0.0)
         self.declare_parameter("run_seconds", 2.0)
+        self.declare_parameter("demo_repeat_period_s", 0.1)
 
         # 进阶参数写入示例默认关闭。
         # 打开后会写入一组温和示例参数，用于展示 API 形式。
@@ -50,7 +53,8 @@ class MotorDirectLibraryNode(Node):
         self.declare_parameter("mit_velocity_max_rad_s", 45.0)
         self.declare_parameter("mit_torque_max_nm", 18.0)
 
-        self.channel = str(self.get_parameter("channel").value)
+        self.config = self._load_config()
+        self.channel = self.config.channel if self.config else str(self.get_parameter("channel").value)
         self.motor_id = int(self.get_parameter("motor_id").value)
         self.demo_enabled = bool(self.get_parameter("demo_enabled").value)
         self.demo_mode = str(self.get_parameter("demo_mode").value).strip().lower()
@@ -62,14 +66,19 @@ class MotorDirectLibraryNode(Node):
         self.kd = float(self.get_parameter("kd").value)
         self.torque_nm = float(self.get_parameter("torque_nm").value)
         self.run_seconds = max(float(self.get_parameter("run_seconds").value), 0.0)
+        self.demo_repeat_period_s = max(float(self.get_parameter("demo_repeat_period_s").value), 0.02)
         self.configure_params = bool(self.get_parameter("configure_params").value)
 
         # 这里就是“直接引入库并实例化”的关键：
         # Controller 会打开 SocketCAN，并启动后台 RX 线程接收电机反馈。
         self.controller = Controller(self.channel)
         self.motor = self.controller.add_motor(self.motor_id)
+        motor_config = self.config.motor_by_id(self.motor_id) if self.config else None
+        if motor_config is not None:
+            self.motor.configure_mit_limits(motor_config.mit_limits)
 
         self._demo_started_at: Optional[float] = None
+        self._last_demo_send_at = 0.0
         self._demo_stop_sent = False
         self.timer = self.create_timer(0.1, self.on_timer)
 
@@ -87,6 +96,18 @@ class MotorDirectLibraryNode(Node):
             self.get_logger().warn("演示运动已启用，节点会根据 demo_mode 发送运动命令。")
         else:
             self.get_logger().info("演示运动未启用；如需运动，请显式设置 demo_enabled:=true。")
+
+    def _load_config(self) -> Optional[HexmovrConfig]:
+        """读取可选 YAML 配置；没有配置文件时返回 None。"""
+        config_file = str(self.get_parameter("config_file").value).strip()
+        if not config_file:
+            return None
+        config = load_hexmovr_config(config_file)
+        self.get_logger().info(
+            f"已读取 Hexmovr 配置：file={config_file}, "
+            f"channel={config.channel}, motors={config.motor_ids}"
+        )
+        return config
 
     # -------------------------------------------------------------------------
     # 基础控制 API 示例
@@ -184,7 +205,9 @@ class MotorDirectLibraryNode(Node):
         )
 
     def stop_motor(self) -> None:
-        """释放电机输出。"""
+        """先发送零速度，再释放电机输出。"""
+        for _ in range(3):
+            self.motor.send_vel(0.0)
         self.motor.disable()
 
     def safe_stop_motor(self) -> None:
@@ -201,26 +224,46 @@ class MotorDirectLibraryNode(Node):
         if not self.demo_enabled and not self.configure_params:
             return
 
-        now = time.monotonic()
         if self._demo_started_at is None:
-            self._demo_started_at = now
-            self.motor.clear_error()
-            if self.configure_params:
-                self.configure_example_params()
-            if self.demo_enabled:
-                self._send_selected_demo_command()
+            try:
+                self.motor.clear_error()
+                if self.configure_params:
+                    self.configure_example_params()
+                if self.demo_enabled:
+                    self._send_selected_demo_command()
+            except Exception as exc:
+                self._demo_stop_sent = True
+                self.get_logger().error(f"发送演示命令失败，演示已中止: {exc}")
+                return
+            self._demo_started_at = time.monotonic()
+            self._last_demo_send_at = self._demo_started_at
             self.get_logger().info(
                 f"已直接向 {self.motor_id} 号电机发送演示命令："
                 f"demo_mode={self.demo_mode}，持续 {self.run_seconds} s"
             )
             return
 
+        now = time.monotonic()
         elapsed = now - self._demo_started_at
         if elapsed >= self.run_seconds and not self._demo_stop_sent:
             self.safe_stop_motor()
             self.request_and_log_state()
             self._demo_stop_sent = True
             self.get_logger().info("直接库调用演示结束，已释放电机。")
+            return
+
+        if (
+            self.demo_enabled
+            and not self._demo_stop_sent
+            and (now - self._last_demo_send_at) >= self.demo_repeat_period_s
+        ):
+            try:
+                self._send_selected_demo_command()
+                self._last_demo_send_at = now
+            except Exception as exc:
+                self._demo_stop_sent = True
+                self.get_logger().error(f"重发演示命令失败，准备停止: {exc}")
+                self.safe_stop_motor()
 
     def _send_selected_demo_command(self) -> None:
         """根据 demo_mode 选择一种协议调用方式。"""

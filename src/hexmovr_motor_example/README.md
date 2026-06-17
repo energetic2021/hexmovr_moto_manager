@@ -65,6 +65,14 @@ ros2 launch hexmovr_motor_example motor_direct_library.launch.py \
   channel:=can0 motor_id:=1 demo_enabled:=true demo_mode:=velocity velocity_rad_s:=0.5
 ```
 
+也可以使用 Hexmovr 电机 YAML 配置：
+
+```bash
+ros2 launch hexmovr_motor_example motor_direct_library.launch.py \
+  config_file:=package://hexmovr_bridge/config/hexmovr_motors.example.yaml \
+  motor_id:=1 demo_enabled:=true demo_mode:=velocity velocity_rad_s:=0.5
+```
+
 直接库调用核心代码：
 
 ```python

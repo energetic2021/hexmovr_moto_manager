@@ -8,6 +8,11 @@ def generate_launch_description():
     return LaunchDescription(
         [
             DeclareLaunchArgument(
+                "config_file",
+                default_value="",
+                description="可选 Hexmovr 电机 YAML 配置文件。",
+            ),
+            DeclareLaunchArgument(
                 "channel",
                 default_value="can0",
                 description="直接库调用模式使用的 SocketCAN 接口。",
@@ -71,6 +76,11 @@ def generate_launch_description():
                 description="演示运动持续时间，单位秒。",
             ),
             DeclareLaunchArgument(
+                "demo_repeat_period_s",
+                default_value="0.1",
+                description="演示命令重发周期，单位秒。",
+            ),
+            DeclareLaunchArgument(
                 "configure_params",
                 default_value="false",
                 description="设置为 true 时写入一组示例控制参数；默认关闭。",
@@ -82,6 +92,7 @@ def generate_launch_description():
                 output="screen",
                 parameters=[
                     {
+                        "config_file": LaunchConfiguration("config_file"),
                         "channel": LaunchConfiguration("channel"),
                         "motor_id": LaunchConfiguration("motor_id"),
                         "demo_enabled": LaunchConfiguration("demo_enabled"),
@@ -94,6 +105,7 @@ def generate_launch_description():
                         "kd": LaunchConfiguration("kd"),
                         "torque_nm": LaunchConfiguration("torque_nm"),
                         "run_seconds": LaunchConfiguration("run_seconds"),
+                        "demo_repeat_period_s": LaunchConfiguration("demo_repeat_period_s"),
                         "configure_params": LaunchConfiguration("configure_params"),
                     }
                 ],
