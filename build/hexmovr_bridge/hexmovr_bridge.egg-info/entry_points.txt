@@ -1,3 +1,0 @@
-[console_scripts]
-hexmovr_bridge = hexmovr_bridge.node:main
-

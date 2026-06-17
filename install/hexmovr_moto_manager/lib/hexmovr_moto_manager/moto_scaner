@@ -1,7 +1,0 @@
-#!/usr/bin/python3
-# EASY-INSTALL-DEV-SCRIPT: 'hexmovr-moto-manager==0.0.0','moto_scaner'
-__requires__ = 'hexmovr-moto-manager==0.0.0'
-__import__('pkg_resources').require('hexmovr-moto-manager==0.0.0')
-__file__ = '/home/hexmovr02/hexmovr_manager/build/hexmovr_moto_manager/scripts/moto_scaner'
-with open(__file__) as f:
-    exec(compile(f.read(), __file__, 'exec'))

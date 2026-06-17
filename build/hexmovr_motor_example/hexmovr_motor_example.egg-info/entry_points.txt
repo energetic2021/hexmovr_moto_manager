@@ -1,4 +1,0 @@
-[console_scripts]
-motor_demo = hexmovr_motor_example.motor_demo:main
-motor_direct_library = hexmovr_motor_example.motor_direct_library:main
-

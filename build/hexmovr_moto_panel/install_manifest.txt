@@ -1,3 +1,0 @@
-/home/hexmovr02/hexmovr_manager/install/hexmovr_moto_panel/lib/libhexmovr_moto_panel.so
-/home/hexmovr02/hexmovr_manager/install/hexmovr_moto_panel/share/hexmovr_moto_panel/cmake/hexmovr_moto_panelExport.cmake
-/home/hexmovr02/hexmovr_manager/install/hexmovr_moto_panel/share/hexmovr_moto_panel/cmake/hexmovr_moto_panelExport-noconfig.cmake

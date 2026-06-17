@@ -1,5 +1,0 @@
-hexmovr_bridge
-setuptools
-
-[test]
-pytest

@@ -1,1 +1,0 @@
-/home/hexmovr02/hexmovr_manager/src/hexmovr_moto_panel/include/hexmovr_moto_panel/hexmovr_panel.hpp

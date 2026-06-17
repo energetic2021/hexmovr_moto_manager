@@ -1,1 +1,0 @@
-/home/hexmovr02/hexmovr_manager/build/hexmovr_moto_panel/ament_cmake_environment_hooks/local_setup.sh
